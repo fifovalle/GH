@@ -36,6 +36,10 @@
                         <label for="suntingKonfirmasiKataSandiAdmin">Konfirmasi Kata Sandi</label>
                     </div>
                     <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="suntingNoTeleponAdmin" placeholder="Masukan No Telepon Admin" />
+                        <label for="suntingNoTeleponAdmin">No Telepon</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="suntingAlamatAdmin" placeholder="Masukan Alamat Admin" />
                         <label for="suntingAlamatAdmin">Alamat</label>
                     </div>

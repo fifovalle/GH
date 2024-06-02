@@ -41,9 +41,11 @@
                                 </div>
                                 <thead>
                                     <tr>
+                                        <th>NO</th>
                                         <th>Foto</th>
-                                        <th>Nama Lengkap</th>
+                                        <th>Nama Admin</th>
                                         <th>Email</th>
+                                        <th>No Telepon</th>
                                         <th>Alamat</th>
                                         <th>Peran</th>
                                         <th>Status</th>
@@ -51,33 +53,54 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    <tr>
-                                        <td>
-                                            <div class="avatar avatar-xl pull-up" title="Nama Admin">
-                                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                        </td>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Ahsan</strong></td>
-                                        <td>Email Admin</td>
-                                        <td>Alamat Admin</td>
-                                        <td>Peran Admin</td>
-                                        <td><span class="badge bg-label-primary me-1">Aktif</span></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingAdmin">
-                                                        <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                    </a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">
-                                                        <i class="bx bx-trash me-1"></i> Hapus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $adminModel = new Admin($koneksi);
+                                    $adminInfo = $adminModel->tampilkanDataAdmin();
+                                    ?>
+                                    <?php if (!empty($adminInfo)) : ?>
+                                        <?php $nomor = 1; ?>
+                                        <?php foreach ($adminInfo as $admin) : ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td>
+                                                    <div class="avatar avatar-xl pull-up" title="Nama Admin">
+                                                        <img src="../uploads/<?php echo $admin['Foto_Admin']; ?>" alt="Avatar" class="rounded-circle avatar avatar-xl" />
+                                                    </div>
+                                                </td>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong><?php echo $admin['Email_Admin']; ?></strong></td>
+                                                <td><?php echo $admin['Nama_Pengguna_Admin']; ?></td>
+                                                <td><?php echo $admin['No_Telepon_Admin']; ?></td>
+                                                <td><?php echo $admin['Alamat_Admin']; ?></td>
+                                                <td>
+                                                    <?php if ($admin['Peran_Admin'] == 'Pengelola') : ?>
+                                                        <span class="badge bg-success">Pengelola</span>
+                                                    <?php else : ?>
+                                                        <span class="badge bg-primary">Admin</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td><span class="badge bg-label-primary me-1">Aktif</span></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingAdmin">
+                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
+                                                            </a>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <i class="bx bx-trash me-1"></i> Hapus
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="6" class="text-center text-danger fw-bold ">Tidak Ada Data Admin!</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

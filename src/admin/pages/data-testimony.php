@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="../assets/css/demo.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../assets/js/config.js"></script>
 </head>
 
@@ -39,6 +41,7 @@
                                 </div>
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Pengelola</th>
                                         <th>Nama</th>
                                         <th>Pesan</th>
@@ -46,28 +49,42 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <?php
+                                $testimoniModel = new Testimoni($koneksi);
+                                $testimoniInfo = $testimoniModel->tampilkanDataTestimoni();
+                                ?>
                                 <tbody class="table-border-bottom-0">
-                                    <tr>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Ahsan</strong></td>
-                                        <td>Nama Testimoni</td>
-                                        <td>Pesan Testimoni</td>
-                                        <td><span class="badge bg-label-primary me-1">Pembeli</span></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingTestimoni">
-                                                        <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                    </a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">
-                                                        <i class="bx bx-trash me-1"></i> Hapus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php if (!empty($testimoniInfo)) : ?>
+                                        <?php $nomor = 1; ?>
+                                        <?php foreach ($testimoniInfo as $testimoni) : ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $testimoni['ID_Admin']; ?></strong></td>
+                                                <td><?php echo $testimoni['Nama_Testimoni']; ?></td>
+                                                <td><?php echo $testimoni['Pesan_Testimoni']; ?></td>
+                                                <td><span class="badge bg-label-primary me-1"><?php echo $testimoni['Status_Testimoni']; ?></span></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingTestimoni">
+                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
+                                                            </a>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <i class="bx bx-trash me-1"></i> Hapus
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="6" class="text-center text-danger fw-bold">Tidak ada data testimoni!</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -94,6 +111,10 @@
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
+
+
+    <!-- ALERT -->
+    <?php include '../partials/alert.php' ?>
 </body>
 
 </html>

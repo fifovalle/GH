@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="../assets/css/demo.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../assets/js/config.js"></script>
 </head>
 
@@ -39,6 +41,7 @@
                                 </div>
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Gambar</th>
                                         <th>Pengelola</th>
                                         <th>Judul</th>
@@ -47,33 +50,47 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <?php
+                                $beritaModel = new Berita($koneksi);
+                                $beritaInfo = $beritaModel->tampilkanDataBerita();
+                                ?>
                                 <tbody class="table-border-bottom-0">
-                                    <tr>
-                                        <td>
-                                            <div class="avatar avatar-xl pull-up" title="Nama Berita">
-                                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                        </td>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Ahsan</strong></td>
-                                        <td>Judul Berita</td>
-                                        <td>Deskripsi Berita</td>
-                                        <td>Tanggal Berita</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingBerita">
-                                                        <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                    </a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">
-                                                        <i class="bx bx-trash me-1"></i> Hapus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php if (!empty($beritaInfo)) : ?>
+                                        <?php $nomor = 1; ?>
+                                        <?php foreach ($beritaInfo as $berita) : ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td>
+                                                    <div class="avatar avatar-xl pull-up" title="Nama Berita">
+                                                        <img src="../../uploads/<?php echo $berita['Gambar_Berita']; ?>" alt="Avatar" class="rounded-circle" />
+                                                    </div>
+                                                </td>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $berita['ID_Admin']; ?>"</strong></td>
+                                                <td><?php echo $berita['Judul_Berita']; ?></td>
+                                                <td><?php echo $berita['Deskripsi_Berita']; ?></td>
+                                                <td><?php echo $berita['Tanggal_Berita']; ?></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingBerita">
+                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
+                                                            </a>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <i class="bx bx-trash me-1"></i> Hapus
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="7" class="text-center text-danger fw-bold">Tidak ada data berita!</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -100,6 +117,10 @@
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
+
+
+    <!-- ALERT -->
+    <?php include '../partials/alert.php' ?>
 </body>
 
 </html>

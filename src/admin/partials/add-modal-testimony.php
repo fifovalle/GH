@@ -6,25 +6,25 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo $akarUrl; ?>src/admin/config/" method="POST" enctype="multipart/form-data">
+                <form action="<?php echo $akarUrl; ?>src/admin/config/add-testimoni.php" method="POST">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="tambahNamaTestimoni" placeholder="Masukan Nama Testimoni" />
+                        <input type="text" class="form-control" name="Nama_Testimoni" id="tambahNamaTestimoni" placeholder="Masukan Nama Testimoni" required />
                         <label for="tambahNamaTestimoni">Nama</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" id="tambahDeskripsiTestimoni" placeholder="Masukan Deskripsi Testimoni" style="resize: none; height: 100px"></textarea>
+                        <textarea class="form-control" name="Pesan_Testimoni" id="tambahDeskripsiTestimoni" placeholder="Masukan Deskripsi Testimoni" style="resize: none; height: 100px" required></textarea>
                         <label for="tambahDeskripsiTestimoni">Deskripsi</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select id="tambahStatusTestimoni" class="form-select">
-                            <option selected>Pilih Status Testimoni</option>
+                        <select name="Status_Testimoni" id="tambahStatusTestimoni" class="form-select" required>
+                            <option selected disabled value="">Pilih Status Testimoni</option>
                             <option value="Penjual">Penjual</option>
                             <option value="Pembeli">Pembeli</option>
                         </select>
                         <label for="tambahStatusTestimoni">Status</label>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary" name="Simpan">Simpan</button>
                     </div>
                 </form>
             </div>

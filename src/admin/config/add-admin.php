@@ -5,13 +5,13 @@ include 'databases.php';
 if (isset($_POST['Simpan'])) {
     $namaDepan = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Depan_Admin']));
     $namaBelakang = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Belakang_Admin']));
-    $namaPengguna = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Pengguna_Admin']));
     $email = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Email_Admin']));
+    $namaPenggunaAdmin = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Pengguna_Admin']));
     $kataSandi = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Kata_Sandi_Admin']));
     $konfirmasiKataSandi = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Konfirmasi_Kata_Sandi_Admin']));
     $nomorTelepon = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['No_Telepon_Admin']));
-    $peranAdmin = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Peran_Admin']));
     $alamatAdmin = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Alamat_Admin']));
+    $peranAdmin = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Peran_Admin']));
     $obyekAdmin = new Admin($koneksi);
     do {
         $token = random_int(10000000, 99999999);
@@ -20,7 +20,15 @@ if (isset($_POST['Simpan'])) {
 
     $pesanKesalahan = '';
 
-    $nomorTeleponFormatted = '+62 ' . substr($nomorTelepon, 0, 3) . '-' . substr($nomorTelepon, 4, 4) . '-' . substr($nomorTelepon, 7);
+    $nomorTelepon = str_replace([' ', '-', '+'], '', $nomorTelepon);
+
+    if (substr($nomorTelepon, 0, 1) === '0') {
+        $nomorTelepon = '+62' . substr($nomorTelepon, 1);
+    } elseif (substr($nomorTelepon, 0, 2) !== '62') {
+        $nomorTelepon = '+62' . $nomorTelepon;
+    }
+    $nomorTeleponFormatted = substr($nomorTelepon, 0, 3) . '-' . substr($nomorTelepon, 3, 4) . '-' . substr($nomorTelepon, 7);
+
 
     if (empty($namaDepan) || empty($namaBelakang) || empty($namaPenggunaAdmin) || empty($email) ||  empty($kataSandi) || empty($konfirmasiKataSandi) || empty($nomorTelepon) || empty($peranAdmin) || empty($alamatAdmin)) {
         $pesanKesalahan .= "Semua bidang harus diisi. ";
@@ -85,13 +93,13 @@ if (isset($_POST['Simpan'])) {
         'Foto_Admin' => $namaFotoAdminBaru,
         'Nama_Depan_Admin' => $namaDepan,
         'Nama_Belakang_Admin' => $namaBelakang,
-        'Nama_Pengguna_Admin' => $namaPenggunaAdmin,
         'Email_Admin' => $email,
+        'Nama_Pengguna_Admin' => $namaPenggunaAdmin,
         'Kata_Sandi_Admin' => $hashKataSandi,
         'Konfirmasi_Kata_Sandi_Admin' => $hashKataSandi,
         'No_Telepon_Admin' => $nomorTeleponFormatted,
-        'Peran_Admin' => $peranAdmin,
         'Alamat_Admin' => $alamatAdmin,
+        'Peran_Admin' => $peranAdmin,
         'Status_Verifikasi_Admin' => "Belum Terverifikasi",
         'Token_Admin' => $token
     );

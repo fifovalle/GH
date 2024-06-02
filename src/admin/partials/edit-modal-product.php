@@ -37,7 +37,7 @@
                         <label for="suntingStatusProduk">Status Produk</label>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary" id="tombolSimpanAdmin" name="Simpan">Simpan</button>
+                        <button type="submit" class="btn btn-primary" id="tombolSimpanProduk" name="Simpan">Simpan</button>
                     </div>
                 </form>
             </div>

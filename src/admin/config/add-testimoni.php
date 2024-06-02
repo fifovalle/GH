@@ -5,7 +5,7 @@ ob_start();
 if (isset($_POST['Simpan'])) {
     if (empty($_POST['Nama_Testimoni']) || empty($_POST['Pesan_Testimoni']) || empty($_POST['Status_Testimoni'])) {
         setPesanKesalahan("Semua field harus diisi.");
-        header("Location: " . $akar_tautan . "src/admin/pages/testimoni.php");
+        header("Location: " . $akarUrl . "src/admin/pages/data-news.php");
         exit;
     }
 
@@ -31,10 +31,10 @@ if (isset($_POST['Simpan'])) {
     } else {
         setPesanKesalahan("Gagal menyimpan data Testimoni.");
     }
-    header("Location: " . $akar_tautan . "src/admin/pages/testimoni.php");
+    header("Location: " . $akarUrl . "src/admin/pages/data-news.php");
     exit;
 } else {
-    header("Location: " . $akar_tautan . "src/admin/pages/testimoni.php");
+    header("Location: " . $akarUrl . "src/admin/pages/data-news.php");
     exit;
 }
 ob_end_flush();

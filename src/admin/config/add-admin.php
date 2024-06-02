@@ -23,11 +23,14 @@ if (isset($_POST['Simpan'])) {
     $nomorTelepon = str_replace([' ', '-', '+'], '', $nomorTelepon);
 
     if (substr($nomorTelepon, 0, 1) === '0') {
-        $nomorTelepon = '+62' . substr($nomorTelepon, 1);
+        $nomorTelepon = '62' . substr($nomorTelepon, 1);
     } elseif (substr($nomorTelepon, 0, 2) !== '62') {
-        $nomorTelepon = '+62' . $nomorTelepon;
+        $nomorTelepon = '62' . $nomorTelepon;
     }
-    $nomorTeleponFormatted = substr($nomorTelepon, 0, 3) . '-' . substr($nomorTelepon, 3, 4) . '-' . substr($nomorTelepon, 7);
+
+    $nomorTeleponFormatted = '+62 ' . substr($nomorTelepon, 2, 3) . '-' . substr($nomorTelepon, 5, 4) . '-' . substr($nomorTelepon, 9);
+
+    echo $nomorTeleponFormatted;
 
 
     if (empty($namaDepan) || empty($namaBelakang) || empty($namaPenggunaAdmin) || empty($email) ||  empty($kataSandi) || empty($konfirmasiKataSandi) || empty($nomorTelepon) || empty($peranAdmin) || empty($alamatAdmin)) {

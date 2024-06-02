@@ -37,45 +37,57 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table card-table">
                                 <div class="justify-content-end d-flex">
-                                    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#tambahPengguna">Tambah Pengguna</button>
+                                    <button class="btn btn-primary me-4 mb-3" data-bs-toggle="modal" data-bs-target="#tambahPengguna">Tambah Pengguna</button>
                                 </div>
                                 <thead>
                                     <tr>
+                                        <th>NO</th>
                                         <th>Foto</th>
                                         <th>Nama Lengkap</th>
                                         <th>Email</th>
+                                        <th>No Telepon</th>
                                         <th>Alamat</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    <tr>
-                                        <td>
-                                            <div class="avatar avatar-xl pull-up" title="Nama Pengguna">
-                                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                        </td>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Ahsan</strong></td>
-                                        <td>Email Pengguna</td>
-                                        <td>Alamat Pengguna</td>
-                                        <td><span class="badge bg-label-primary me-1">Aktif</span></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingPengguna">
-                                                        <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                    </a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">
-                                                        <i class="bx bx-trash me-1"></i> Hapus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $penggunaModel = new Pengguna($koneksi);
+                                    $penggunaInfo = $penggunaModel->tampilkanDataPengguna();
+                                    ?>
+                                    <?php if (!empty($penggunaInfo)) : ?>
+                                        <?php $nomor = 1; ?>
+                                        <?php foreach ($penggunaInfo as $pengguna) : ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td>
+                                                    <div class="avatar avatar-xl pull-up" title="Nama Pengguna">
+                                                        <img src="../uploads/<?php echo $pengguna['Foto_Pengguna']; ?>" alt="Avatar" class="rounded-circle" />
+                                                    </div>
+                                                </td>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $pengguna['Nama_Pengguna']; ?></strong></td>
+                                                <td><?php echo $pengguna['Email_Pengguna']; ?></td>
+                                                <td><?php echo $pengguna['No_Telepon_Pengguna']; ?></td>
+                                                <td><?php echo $pengguna['Alamat_Pengguna']; ?></td>
+                                                <td><span class="badge bg-label-primary me-1">Aktif</span></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" onclick="konfirmasiHapusPengguna(<?php echo $pengguna['ID_Pengguna']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="7" class="text-center text-danger fw-bold">Tidak Ada Data Pengguna!</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -86,7 +98,6 @@
 
                     <!-- MODAL START -->
                     <?php include '../partials/add-modal-user.php' ?>
-                    <?php include '../partials/edit-modal-user.php' ?>
                     <!-- MODAL END  -->
                     <div class="content-backdrop fade"></div>
                 </div>
@@ -102,6 +113,7 @@
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
+    <script src="../assets/js/delete-user.js"></script>
 
     <!-- ALERT -->
     <?php include '../partials/alert.php' ?>

@@ -37,41 +37,56 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table card-table">
                                 <div class="justify-content-end d-flex">
-                                    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#tambahSpanduk">Tambah Spanduk</button>
+                                    <button class="btn btn-primary me-4 mb-3" data-bs-toggle="modal" data-bs-target="#tambahSpanduk">Tambah Spanduk</button>
                                 </div>
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Gambar</th>
                                         <th>Pengelola</th>
                                         <th>Nama</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <?php
+                                $spandukModel = new Spanduk($koneksi);
+                                $spandukInfo = $spandukModel->tampilkanDataSpanduk();
+                                ?>
                                 <tbody class="table-border-bottom-0">
-                                    <tr>
-                                        <td>
-                                            <div class="avatar avatar-xl pull-up" title="Nama Spanduk">
-                                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                        </td>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Ahsan</strong></td>
-                                        <td>Nama Spanduk</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingSpanduk">
-                                                        <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                    </a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">
-                                                        <i class="bx bx-trash me-1"></i> Hapus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php if (!empty($spandukInfo)) : ?>
+                                        <?php $nomor = 1; ?>
+                                        <?php foreach ($spandukInfo as $spanduk) : ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td>
+                                                    <div class="avatar avatar-xl pull-up" title="Nama Spanduk">
+                                                        <img src="../uploads/<?php echo $spanduk['Gambar_Spanduk']; ?>" alt="Avatar" class="rounded-circle" />
+                                                    </div>
+                                                </td>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $spanduk['ID_Admin']; ?></strong></td>
+                                                <td><?php echo $spanduk['Nama_Spanduk']; ?></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingSpanduk">
+                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
+                                                            </a>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <i class="bx bx-trash me-1"></i> Hapus
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="6" class="text-center text-danger fw-bold">Tidak ada data produk!</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

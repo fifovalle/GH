@@ -37,7 +37,7 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table card-table">
                                 <div class="justify-content-end d-flex">
-                                    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#tambahAdmin">Tambah Admin</button>
+                                    <button class="btn btn-primary me-4 mb-3" data-bs-toggle="modal" data-bs-target="#tambahAdmin">Tambah Admin</button>
                                 </div>
                                 <thead>
                                     <tr>
@@ -67,15 +67,15 @@
                                                         <img src="../uploads/<?php echo $admin['Foto_Admin']; ?>" alt="Avatar" class="rounded-circle avatar avatar-xl" />
                                                     </div>
                                                 </td>
-                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong><?php echo $admin['Email_Admin']; ?></strong></td>
-                                                <td><?php echo $admin['Nama_Pengguna_Admin']; ?></td>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong><?php echo $admin['Nama_Pengguna_Admin']; ?></strong></td>
+                                                <td><?php echo $admin['Email_Admin']; ?></td>
                                                 <td><?php echo $admin['No_Telepon_Admin']; ?></td>
                                                 <td><?php echo $admin['Alamat_Admin']; ?></td>
                                                 <td>
-                                                    <?php if ($admin['Peran_Admin'] == 'Pengelola') : ?>
-                                                        <span class="badge bg-success">Pengelola</span>
+                                                    <?php if ($admin['Peran_Admin'] == 'Super Admin') : ?>
+                                                        <span class="badge border border-info text-info">Pengelola</span>
                                                     <?php else : ?>
-                                                        <span class="badge bg-primary">Admin</span>
+                                                        <span class="badge border border-warning text-warning">Admin</span>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td><span class="badge bg-label-primary me-1">Aktif</span></td>
@@ -85,12 +85,8 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingAdmin">
-                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                            </a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">
-                                                                <i class="bx bx-trash me-1"></i> Hapus
-                                                            </a>
+                                                            <a class="dropdown-item buttonAdmin" data-bs-toggle="modal" data-id="<?php echo $admin['ID_Admin']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item" onclick="konfirmasiHapusAdmin(<?php echo $admin['ID_Admin']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -121,12 +117,14 @@
     </div>
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
     <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/vendor/js/menu.js"></script>
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
+    <script src="../assets/js/delete-admin.js"></script>
+    <script src="../assets/js/value-admin.js"></script>
 
 
     <!-- ALERT -->

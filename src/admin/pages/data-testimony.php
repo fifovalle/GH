@@ -37,7 +37,7 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table card-table">
                                 <div class="justify-content-end d-flex">
-                                    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#tambahTestimoni">Tambah Testimoni</button>
+                                    <button class="btn btn-primary me-4 mb-3" data-bs-toggle="modal" data-bs-target="#tambahTestimoni">Tambah Testimoni</button>
                                 </div>
                                 <thead>
                                     <tr>

@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="../config/add-berita.php" enctype="multipart/form-data">
+                <form method="POST" action="<?php echo $akarUrl; ?>src/admin/config/add-news.php" enctype="multipart/form-data">
                     <div class="form-floating mb-3">
                         <input type="file" class="form-control" name="Gambar_Berita" id="tambahGambarBerita" />
                         <label for="tambahGambarBerita">Gambar</label>

@@ -37,7 +37,7 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table card-table">
                                 <div class="justify-content-end d-flex">
-                                    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#tambahBerita">Tambah Berita</button>
+                                    <button class="btn btn-primary me-4 mb-3" data-bs-toggle="modal" data-bs-target="#tambahBerita">Tambah Berita</button>
                                 </div>
                                 <thead>
                                     <tr>
@@ -62,11 +62,12 @@
                                                 <td><?php echo $nomor++; ?></td>
                                                 <td>
                                                     <div class="avatar avatar-xl pull-up" title="Nama Berita">
-                                                        <img src="../../uploads/<?php echo $berita['Gambar_Berita']; ?>" alt="Avatar" class="rounded-circle" />
+                                                        <img src="../uploads/<?php echo $berita['Gambar_Berita']; ?>" alt="Avatar" class="rounded-circle" />
                                                     </div>
                                                 </td>
                                                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $berita['ID_Admin']; ?>"</strong></td>
                                                 <td><?php echo $berita['Judul_Berita']; ?></td>
+                                                <td><?php echo $berita['Deskripsi_Berita']; ?></td>
                                                 <td><?php echo $berita['Deskripsi_Berita']; ?></td>
                                                 <td><?php echo $berita['Tanggal_Berita']; ?></td>
                                                 <td>

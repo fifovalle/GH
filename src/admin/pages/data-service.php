@@ -37,7 +37,7 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table card-table">
                                 <div class="justify-content-end d-flex">
-                                    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#tambahJasa">Tambah Jasa</button>
+                                    <button class="btn btn-primary me-4 mb-3" data-bs-toggle="modal" data-bs-target="#tambahJasa">Tambah Jasa</button>
                                 </div>
                                 <thead>
                                     <tr>
@@ -47,39 +47,55 @@
                                         <th>Deskripsi</th>
                                         <th>Harga</th>
                                         <th>Stok</th>
+                                        <th>No Rekening</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <?php
+                                $jasaModel = new Jasa($koneksi);
+                                $jasaInfo = $jasaModel->tampilkanDataJasa();
+                                ?>
                                 <tbody class="table-border-bottom-0">
-                                    <tr>
-                                        <td>
-                                            <div class="avatar avatar-xl pull-up" title="Nama Jasa">
-                                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                        </td>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Ahsan</strong></td>
-                                        <td>Nama Jasa</td>
-                                        <td>Deskripsi Jasa</td>
-                                        <td>Harga Jasa</td>
-                                        <td>Stok Jasa</td>
-                                        <td><span class="badge bg-label-primary me-1">Aktif</span></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingJasa">
-                                                        <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                    </a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">
-                                                        <i class="bx bx-trash me-1"></i> Hapus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php if (!empty($jasaInfo)) : ?>
+                                        <?php $nomor = 1; ?>
+                                        <?php foreach ($jasaInfo as $jasa) : ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td>
+                                                    <div class="avatar avatar-xl pull-up" title="Nama Jasa">
+                                                        <img src="../uploads/<?php echo $jasa['Gambar_Jasa']; ?>" alt="Avatar" class="rounded-circle" />
+                                                    </div>
+                                                </td>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $jasa['ID_Admin']; ?></strong></td>
+                                                <td><?php echo $jasa['Nama_Jasa']; ?></td>
+                                                <td><?php echo $jasa['Deskripsi_Jasa']; ?></td>
+                                                <td><?php echo $jasa['Harga_Jasa']; ?></td>
+                                                <td><?php echo $jasa['Stok_Jasa']; ?></td>
+                                                <td><?php echo $jasa['Nomor_Rekening_Jasa']; ?></td>
+                                                <td><span class="badge bg-label-primary me-1"><?php echo $jasa['Status_Tersedia_Jasa']; ?></span></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingJasa">
+                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
+                                                            </a>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <i class="bx bx-trash me-1"></i> Hapus
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="9" class="text-center text-danger fw-bold">Tidak ada data jasa!</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

@@ -37,49 +37,62 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table card-table">
                                 <div class="justify-content-end d-flex">
-                                    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#tambahProduk">Tambah Produk</button>
+                                    <button class="btn btn-primary me-4 mb-3" data-bs-toggle="modal" data-bs-target="#tambahProduk">Tambah Produk</button>
                                 </div>
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Gambar</th>
                                         <th>Pengelola</th>
                                         <th>Nama</th>
                                         <th>Deskripsi</th>
                                         <th>Harga</th>
                                         <th>Stok</th>
+                                        <th>No Rekening</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <?php
+                                $produkModel = new Produk($koneksi);
+                                $produkInfo = $produkModel->tampilkanDataProduk();
+                                ?>
                                 <tbody class="table-border-bottom-0">
-                                    <tr>
-                                        <td>
-                                            <div class="avatar avatar-xl pull-up" title="Nama Produk">
-                                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                        </td>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Ahsan</strong></td>
-                                        <td>Nama Produk</td>
-                                        <td>Deskripsi Produk</td>
-                                        <td>Harga Produk</td>
-                                        <td>Stok Produk</td>
-                                        <td><span class="badge bg-label-primary me-1">Aktif</span></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingProduk">
-                                                        <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                    </a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">
-                                                        <i class="bx bx-trash me-1"></i> Hapus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php if (!empty($produkInfo)) : ?>
+                                        <?php $nomor = 1; ?>
+                                        <?php foreach ($produkInfo as $produk) : ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td>
+                                                    <div class="avatar avatar-xl pull-up" title="Nama Produk">
+                                                        <img src="../uploads/<?php echo $produk['Gambar_Produk']; ?>" alt="Avatar" class="rounded-circle" />
+                                                    </div>
+                                                </td>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $produk['ID_Admin']; ?></strong></td>
+                                                <td><?php echo $produk['Nama_Produk']; ?></td>
+                                                <td><?php echo $produk['Deskripsi_Produk']; ?></td>
+                                                <td><?php echo $produk['Harga_Produk']; ?></td>
+                                                <td><?php echo $produk['Stok_Produk']; ?></td>
+                                                <td><?php echo $produk['Nomor_Rekening_Produk']; ?></td>
+                                                <td><span class="badge bg-label-primary me-1"><?php echo $produk['Status_Tersedia_Produk']; ?></span></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item buttonProduk" data-bs-toggle="modal" data-id="<?php echo $produk['ID_Produk']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item" onclick="konfirmasiHapusProduk(<?php echo $produk['ID_Produk']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="9" class="text-center text-danger fw-bold">Tidak ada data produk!</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -106,6 +119,8 @@
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
+    <script src="../assets/js/delete-product.js"></script>
+    <script src="../assets/js/value-product.js"></script>
 
 
     <!-- ALERT -->

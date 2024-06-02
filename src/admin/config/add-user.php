@@ -1,11 +1,10 @@
 <?php
 include 'databases.php';
 
-
 if (isset($_POST['Simpan'])) {
     $namaDepan = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Depan_Pengguna']));
     $namaBelakang = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Belakang_Pengguna']));
-    $namaPenggunaPengguna = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Pengguna']));
+    $namaPengguna = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Pengguna']));
     $emailPengguna = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Email_Pengguna']));
     $kataSandi = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Kata_Sandi_Pengguna']));
     $konfirmasiKataSandi = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Konfirmasi_Kata_Sandi_Pengguna']));
@@ -23,14 +22,18 @@ if (isset($_POST['Simpan'])) {
     $nomorTelepon = str_replace([' ', '-', '+'], '', $nomorTelepon);
 
     if (substr($nomorTelepon, 0, 1) === '0') {
-        $nomorTelepon = '+62' . substr($nomorTelepon, 1);
+        $nomorTelepon = '62' . substr($nomorTelepon, 1);
     } elseif (substr($nomorTelepon, 0, 2) !== '62') {
-        $nomorTelepon = '+62' . $nomorTelepon;
+        $nomorTelepon = '62' . $nomorTelepon;
     }
-    $nomorTeleponFormatted = substr($nomorTelepon, 0, 3) . '-' . substr($nomorTelepon, 3, 4) . '-' . substr($nomorTelepon, 7);
+
+    $nomorTeleponFormatted = '+62 ' . substr($nomorTelepon, 2, 3) . '-' . substr($nomorTelepon, 5, 4) . '-' . substr($nomorTelepon, 9);
+
+    echo $nomorTeleponFormatted;
 
 
-    if (empty($namaDepan) || empty($namaBelakang) || empty($namaPenggunaPengguna) || empty($emailPengguna) ||  empty($kataSandi) || empty($konfirmasiKataSandi) || empty($nomorTelepon) || empty($alamatPengguna)) {
+
+    if (empty($namaDepan) || empty($namaBelakang) || empty($namaPengguna) || empty($emailPengguna) ||  empty($kataSandi) || empty($konfirmasiKataSandi) || empty($nomorTelepon) || empty($alamatPengguna)) {
         $pesanKesalahan .= "Semua bidang harus diisi. ";
     }
 
@@ -89,11 +92,21 @@ if (isset($_POST['Simpan'])) {
         exit;
     }
 
+
+    if ($obyekPengguna->cekEmailPenggunaSudahAda($emailPengguna)) {
+        setPesanKesalahan("Email yang dimasukkan sudah terdaftar.");
+        header("Location: $akarUrl" . "src/admin/pages/data-user.php");
+        exit;
+    }
+
+    $lokasiPenyimpanan = "../uploads/";
+    $tujuanFotoPengguna = $lokasiPenyimpanan . $namaFotoPenggunaBaru;
+
     $dataPengguna = array(
-        'Foto_Pengguna' => '',
+        'Foto_Pengguna' => $tujuanFotoPengguna,
         'Nama_Depan_Pengguna' => $namaDepan,
         'Nama_Belakang_Pengguna' => $namaBelakang,
-        'Nama_Pengguna_Pengguna' => $namaPenggunaPengguna,
+        'Nama_Pengguna' => $namaPengguna,
         'Email_Pengguna' => $emailPengguna,
         'Kata_Sandi_Pengguna' => $hashKataSandi,
         'Konfirmasi_Kata_Sandi_Pengguna' => $hashKataSandi,

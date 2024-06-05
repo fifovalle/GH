@@ -41,6 +41,7 @@
                                 </div>
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Gambar</th>
                                         <th>Pengelola</th>
                                         <th>Nama</th>
@@ -80,12 +81,8 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingJasa">
-                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                            </a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">
-                                                                <i class="bx bx-trash me-1"></i> Hapus
-                                                            </a>
+                                                        <a class="dropdown-item buttonJasa" data-bs-toggle="modal" data-id="<?php echo $jasa['ID_Jasa']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item" onclick="konfirmasiHapusJasa(<?php echo $jasa['ID_Jasa']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -122,6 +119,8 @@
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
+    <script src="../assets/js/delete-jasa.js"></script>
+    <script src="../assets/js/value-service.js"></script>
 
 
     <!-- ALERT -->

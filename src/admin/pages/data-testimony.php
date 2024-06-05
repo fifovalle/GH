@@ -69,12 +69,8 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingTestimoni">
-                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                            </a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">
-                                                                <i class="bx bx-trash me-1"></i> Hapus
-                                                            </a>
+                                                            <a class="dropdown-item buttonTestimoni" data-bs-toggle="modal" data-id="<?php echo $testimoni['ID_Testimoni']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item" onclick="konfirmasiHapusTestimoni(<?php echo $testimoni['ID_Testimoni']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -111,6 +107,8 @@
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
+    <script src="../assets/js/delete-testimoni.js"></script>
+    <script src="../assets/js/value-testimoni.js"></script>
 
 
     <!-- ALERT -->

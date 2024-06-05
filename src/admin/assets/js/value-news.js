@@ -1,27 +1,28 @@
 $(document).ready(function () {
-  $(".buttonProduk").click(function (e) {
+  $(".buttonBerita").click(function (e) {
     e.preventDefault();
-    let produkID = $(this).data("id");
-    console.log(produkID);
+    let beritaID = $(this).data("id");
+    console.log(beritaID);
     $.ajax({
-      url: "../config/get-product-data.php",
+      url: "../config/get-news-data.php",
       method: "GET",
       data: {
-        produk_id: produkID,
+        berita_id: beritaID,
       },
       success: function (data) {
         console.log(data);
-        let produkData = JSON.parse(data);
-        console.log(produkData);
+        let beritaData = JSON.parse(data);
+        console.log(beritaData);
 
-        $("#suntingProdukID").val(produkData.ID_Produk);
-        $("#suntingNamaProduk").val(produkData.Nama_Produk);
-        $("#suntingDeskripsiProduk").val(produkData.Deskripsi_Produk);
-        $("#suntingHargaProduk").val(produkData.Harga_Produk);
-        $("#suntingStokProduk").val(produkData.Stok_Produk);
-        $("#suntingStatusProduk").val(produkData.Status_Tersedia_Produk);
+        $("#suntingBeritaID").val(beritaData.ID_Berita);
+        $("#suntingJudulBerita").val(beritaData.Judul_Berita);
+        $("#suntingDeskripsiBerita").val(beritaData.Deskripsi_Berita);
+        $("#suntingTanggalBerita").val(beritaData.Tanggal_Berita);
 
-        $("#suntingProduk").modal("show");
+        let suntingBeritaModal = new bootstrap.Modal(
+          document.getElementById("suntingBerita")
+        );
+        suntingBeritaModal.show();
       },
       error: function (xhr) {
         console.error(xhr.responseText);
@@ -29,13 +30,13 @@ $(document).ready(function () {
     });
   });
 
-  $("#tombolSimpanProduk").click(function (e) {
+  $("#tombolSimpanBerita").click(function (e) {
     e.preventDefault();
 
     let formData = new FormData($(this).closest("form")[0]);
 
     $.ajax({
-      url: "../config/edit-product.php",
+      url: "../config/edit-news.php",
       method: "POST",
       data: formData,
       processData: false,
@@ -57,9 +58,9 @@ $(document).ready(function () {
             timer: 3000,
             timerProgressBar: true,
           }).then((result) => {
-            result.dismiss === Swal.DismissReason.timer
-              ? (window.location.href = "../pages/data-product.php")
-              : null;
+            if (result.dismiss === Swal.DismissReason.timer) {
+              window.location.href = "../pages/data-news.php";
+            }
           });
         } else {
           Swal.fire({
@@ -88,7 +89,10 @@ $(document).ready(function () {
         });
       },
       complete: function () {
-        $("#suntingProduk").modal("hide");
+        let suntingBeritaModal = bootstrap.Modal.getInstance(
+          document.getElementById("suntingBerita")
+        );
+        suntingBeritaModal.hide();
       },
     });
   });

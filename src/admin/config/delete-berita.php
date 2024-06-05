@@ -4,9 +4,9 @@ include 'databases.php';
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $testimoniModel = new Testimoni($koneksi);
+    $beritaModel = new Berita($koneksi);
 
-    $hapusData = $testimoniModel->hapusTestimoni($id);
+    $hapusData = $beritaModel->hapusBerita($id);
 
     $successMessage = "Data berhasil dihapus.";
     $failureMessage = "Gagal menghapus data.";
@@ -14,11 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $sessionKey = $hapusData ? 'berhasil' : 'gagal';
     setPesanKeberhasilan($hapusData ? $successMessage : '');
     setPesanKesalahan(!$hapusData ? $failureMessage : '');
-    header("Location: $akarUrl/src/admin/pages/data-testimony.php");
+    header("Location: $akarUrl/src/admin/pages/data-news.php");
     exit();
 } else {
     $errorMessage = "Halaman tidak dapat diakses.";
     setPesanKesalahan($errorMessage);
-    header("Location: $akarUrl/src/admin/pages/data-testimony.php");
+    header("Location: $akarUrl/src/admin/pages/data-news.php");
     exit();
 }

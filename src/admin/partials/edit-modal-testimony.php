@@ -6,17 +6,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo $akarUrl; ?>src/admin/config/" method="POST" enctype="multipart/form-data">
+                <form>
+                    <input type="hidden" id="suntingTestimoniID" name="ID_Testimoni" autocomplete="off">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="suntingNamaTestimoni" placeholder="Masukan Nama Testimoni" />
+                        <input type="text" class="form-control" id="suntingNamaTestimoni" name="Nama_Testimoni" placeholder="Masukan Nama Testimoni" />
                         <label for="suntingNamaTestimoni">Nama</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" id="suntingDeskripsiTestimoni" placeholder="Masukan Deskripsi Testimoni" style="resize: none; height: 100px"></textarea>
+                        <textarea class="form-control" id="suntingDeskripsiTestimoni" name="Pesan_Testimoni" placeholder="Masukan Deskripsi Testimoni" style="resize: none; height: 100px"></textarea>
                         <label for="suntingDeskripsiTestimoni">Deskripsi</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select id="suntingStatusTestimoni" class="form-select">
+                        <select id="suntingStatusTestimoni" name="Status_Testimoni" class="form-select">
                             <option selected>Pilih Status Testimoni</option>
                             <option value="Penjual">Penjual</option>
                             <option value="Pembeli">Pembeli</option>
@@ -24,7 +25,7 @@
                         <label for="suntingStatusTestimoni">Status</label>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary" id="tombolSimpanTestimoni" name="Simpan">Simpan</button>
                     </div>
                 </form>
             </div>

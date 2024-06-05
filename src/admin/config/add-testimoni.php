@@ -31,10 +31,10 @@ if (isset($_POST['Simpan'])) {
     } else {
         setPesanKesalahan("Gagal menyimpan data Testimoni.");
     }
-    header("Location: " . $akarUrl . "src/admin/pages/data-news.php");
+    header("Location: " . $akarUrl . "src/admin/pages/data-testimony.php");
     exit;
 } else {
-    header("Location: " . $akarUrl . "src/admin/pages/data-news.php");
+    header("Location: " . $akarUrl . "src/admin/pages/data-testimony.php");
     exit;
 }
 ob_end_flush();

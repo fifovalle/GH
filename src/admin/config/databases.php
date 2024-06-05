@@ -346,7 +346,6 @@ class Berita
 
     public function perbaruiBerita($idBerita, $dataBerita)
     {
-        // Sanitasi input untuk setiap nilai
         $judul = $this->menghilangkanString($dataBerita['Judul_Berita']);
         $deskripsi = $this->menghilangkanString($dataBerita['Deskripsi_Berita']);
         $tanggalBerita = $this->menghilangkanString($dataBerita['Tanggal_Berita']);
@@ -486,6 +485,24 @@ class Testimoni
             return false;
         }
     }
+
+    public function perbaruiTestimoni($idTestimoni, $dataTestimoni)
+    {
+        $nama = $this->menghilangkanString($dataTestimoni['Nama_Testimoni']);
+        $pesan = $this->menghilangkanString($dataTestimoni['Pesan_Testimoni']);
+        $status = $this->menghilangkanString($dataTestimoni['Status_Testimoni']);
+    
+        $sql = "UPDATE testimoni SET Nama_Testimoni = ?, Pesan_Testimoni = ?, Status_Testimoni = ? WHERE ID_Testimoni = ?";
+        $stmt = $this->koneksi->prepare($sql);
+        $stmt->bind_param("sssi", $nama, $pesan, $status, $idTestimoni);
+    
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }
 // ===================================TESTIMONI================================
 
@@ -555,37 +572,34 @@ class Produk
 
     public function perbaruiProduk($idProduk, $dataProduk)
     {
-        $idAdmin = $this->menghilangkanString($dataProduk['ID_Admin']);
         $gambar = $this->menghilangkanString($dataProduk['Gambar_Produk']);
         $nama = $this->menghilangkanString($dataProduk['Nama_Produk']);
         $deskripsi = $this->menghilangkanString($dataProduk['Deskripsi_Produk']);
         $harga = $this->menghilangkanString($dataProduk['Harga_Produk']);
         $stok = $this->menghilangkanString($dataProduk['Stok_Produk']);
-        $nomorRekening = $this->menghilangkanString($dataProduk['Nomor_Rekening_Produk']);
         $status = $this->menghilangkanString($dataProduk['Status_Tersedia_Produk']);
-
-        $query = "UPDATE produk SET ID_Admin = ?, Gambar_Produk = ?, Nama_Produk = ?, Deskripsi_Produk = ?, Harga_Produk = ?, Stok_Produk = ?, Nomor_Rekening_Produk = ?, Status_Tersedia_Produk = ? WHERE ID_Produk = ?";
-
+    
+        $query = "UPDATE produk SET Gambar_Produk = ?, Nama_Produk = ?, Deskripsi_Produk = ?, Harga_Produk = ?, Stok_Produk = ?, Status_Tersedia_Produk = ? WHERE ID_Produk = ?";
         $statement = $this->koneksi->prepare($query);
+    
         $statement->bind_param(
-            "issiiisi",
-            $idAdmin,
+            "sssiisi",
             $gambar,
             $nama,
             $deskripsi,
             $harga,
             $stok,
-            $nomorRekening,
             $status,
             $idProduk
         );
-
+    
         if ($statement->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 
     public function getGambarProdukById($idProduk)
     {
@@ -698,16 +712,14 @@ class Spanduk
 
     public function perbaruiSpanduk($idSpanduk, $dataSpanduk)
     {
-        $idAdmin = $this->menghilangkanString($dataSpanduk['ID_Admin']);
         $gambar = $this->menghilangkanString($dataSpanduk['Gambar_Spanduk']);
         $nama = $this->menghilangkanString($dataSpanduk['Nama_Spanduk']);
 
-        $query = "UPDATE spanduk SET ID_Admin = ?, Gambar_Spanduk = ?, Nama_Spanduk = ? WHERE ID_Spanduk = ?";
+        $query = "UPDATE spanduk SET Gambar_Spanduk = ?, Nama_Spanduk = ? WHERE ID_Spanduk = ?";
 
         $statement = $this->koneksi->prepare($query);
         $statement->bind_param(
-            "issi",
-            $idAdmin,
+            "ssi",
             $gambar,
             $nama,
             $idSpanduk
@@ -841,24 +853,37 @@ class Jasa
 
     public function perbaruiJasa($idJasa, $dataJasa)
     {
-        $idAdmin = $dataJasa['ID_Admin'];
         $gambar = $dataJasa['Gambar_Jasa'];
         $nama = $dataJasa['Nama_Jasa'];
         $deskripsi = $dataJasa['Deskripsi_Jasa'];
         $harga = $dataJasa['Harga_Jasa'];
         $stok = $dataJasa['Stok_Jasa'];
-        $nomorRekening = $dataJasa['Nomor_Rekening_Jasa'];
         $status = $dataJasa['Status_Tersedia_Jasa'];
 
-        $query = "UPDATE jasa SET ID_Admin = ?, Gambar_Jasa = ?, Nama_Jasa = ?, Deskripsi_Jasa = ?, Harga_Jasa = ?, Stok_Jasa = ?, Nomor_Rekening_Jasa = ?, Status_Tersedia_Jasa = ? WHERE ID_Jasa = ?";
+        $query = "UPDATE jasa SET  Gambar_Jasa = ?, Nama_Jasa = ?, Deskripsi_Jasa = ?, Harga_Jasa = ?, Stok_Jasa = ?, Status_Tersedia_Jasa = ? WHERE ID_Jasa = ?";
         $statement = $this->koneksi->prepare($query);
-        $statement->bind_param("isssiiisi", $idAdmin, $gambar, $nama, $deskripsi, $harga, $stok, $nomorRekening, $status, $idJasa);
+        $statement->bind_param("sssiisi", $gambar, $nama, $deskripsi, $harga, $stok, $status, $idJasa);
 
         if ($statement->execute()) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public function getGambarJasaById($idJasa)
+    {
+        $sql = "SELECT Gambar_Jasa FROM jasa WHERE ID_Jasa = ?";
+        $stmt = $this->koneksi->prepare($sql);
+        $stmt->bind_param("i", $idJasa);
+        $stmt->execute();
+
+        $gambar = null;
+        $stmt->bind_result($gambar);
+        $stmt->fetch();
+        $stmt->close();
+
+        return $gambar;
     }
 
     public function hapusJasa($id)

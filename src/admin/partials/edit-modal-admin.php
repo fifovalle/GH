@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="POST">
+                <form>
                     <input type="hidden" id="suntingAdminID" name="ID_Admin" autocomplete="off">
                     <div class="form-floating mb-3">
                         <input type="file" class="form-control" id="suntingFotoAdmin" name="Foto_Admin" />

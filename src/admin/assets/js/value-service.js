@@ -1,27 +1,27 @@
 $(document).ready(function () {
-  $(".buttonProduk").click(function (e) {
+  $(".buttonJasa").click(function (e) {
     e.preventDefault();
-    let produkID = $(this).data("id");
-    console.log(produkID);
+    let jasaID = $(this).data("id");
+    console.log(jasaID);
     $.ajax({
-      url: "../config/get-product-data.php",
+      url: "../config/get-service-data.php",
       method: "GET",
       data: {
-        produk_id: produkID,
+        jasa_id: jasaID,
       },
       success: function (data) {
         console.log(data);
-        let produkData = JSON.parse(data);
-        console.log(produkData);
+        let jasaData = JSON.parse(data);
+        console.log(jasaData);
 
-        $("#suntingProdukID").val(produkData.ID_Produk);
-        $("#suntingNamaProduk").val(produkData.Nama_Produk);
-        $("#suntingDeskripsiProduk").val(produkData.Deskripsi_Produk);
-        $("#suntingHargaProduk").val(produkData.Harga_Produk);
-        $("#suntingStokProduk").val(produkData.Stok_Produk);
-        $("#suntingStatusProduk").val(produkData.Status_Tersedia_Produk);
+        $("#suntingJasaID").val(jasaData.ID_Jasa);
+        $("#suntingNamaJasa").val(jasaData.Nama_Jasa);
+        $("#suntingDeskripsiJasa").val(jasaData.Deskripsi_Jasa);
+        $("#suntingHargaJasa").val(jasaData.Harga_Jasa);
+        $("#suntingStokJasa").val(jasaData.Stok_Jasa);
+        $("#suntingStatusJasa").val(jasaData.Status_Tersedia_Jasa);
 
-        $("#suntingProduk").modal("show");
+        $("#suntingJasa").modal("show");
       },
       error: function (xhr) {
         console.error(xhr.responseText);
@@ -29,13 +29,13 @@ $(document).ready(function () {
     });
   });
 
-  $("#tombolSimpanProduk").click(function (e) {
+  $("#tombolSimpanJasa").click(function (e) {
     e.preventDefault();
 
     let formData = new FormData($(this).closest("form")[0]);
 
     $.ajax({
-      url: "../config/edit-product.php",
+      url: "../config/edit-service.php",
       method: "POST",
       data: formData,
       processData: false,
@@ -58,7 +58,7 @@ $(document).ready(function () {
             timerProgressBar: true,
           }).then((result) => {
             result.dismiss === Swal.DismissReason.timer
-              ? (window.location.href = "../pages/data-product.php")
+              ? (window.location.href = "../pages/data-service.php")
               : null;
           });
         } else {
@@ -88,7 +88,7 @@ $(document).ready(function () {
         });
       },
       complete: function () {
-        $("#suntingProduk").modal("hide");
+        $("#suntingJasa").modal("hide");
       },
     });
   });

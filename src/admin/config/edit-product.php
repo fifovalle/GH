@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idProduk = $_POST['ID_Produk'] ?? '';
     $namaProduk = $_POST['Nama_Produk'] ?? '';
     $deskripsiProduk = $_POST['Deskripsi_Produk'] ?? '';
+    $hargaProduk = $_POST['Harga_Produk'] ?? '';
     $stokProduk = $_POST['Stok_Produk'] ?? '';
     $statusTersediaProduk = $_POST['Status_Tersedia_Produk'] ?? '';
 
@@ -40,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dataProduk = array(
         'Nama_Produk' => $namaProduk,
         'Deskripsi_Produk' => $deskripsiProduk,
+        'Harga_Produk' => $hargaProduk,
         'Stok_Produk' => $stokProduk,
         'Status_Tersedia_Produk' => $statusTersediaProduk,
         'Gambar_Produk' => $namaFileBaru

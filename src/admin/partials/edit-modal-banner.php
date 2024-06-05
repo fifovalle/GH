@@ -6,17 +6,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo $akarUrl; ?>src/admin/config/" method="POST" enctype="multipart/form-data">
+                <form>
+                    <input type="hidden" id="suntingSpandukID" name="ID_Spanduk" autocomplete="off">
                     <div class="form-floating mb-3">
-                        <input type="file" class="form-control" id="suntingGambarSpanduk" />
+                        <input type="file" class="form-control" id="suntingGambarSpanduk" name="Gambar_Spanduk" />
                         <label for="suntingGambarSpanduk">Gambar</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="suntingNamaSpanduk" placeholder="Masukan Nama Spanduk" />
+                        <input type="text" class="form-control" id="suntingNamaSpanduk" name="Nama_Spanduk" placeholder="Masukan Nama Spanduk" />
                         <label for="suntingNamaSpanduk">Nama Spanduk</label>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary" id="tombolSimpanSpanduk" name="Simpan">Simpan</button>
                     </div>
                 </form>
             </div>

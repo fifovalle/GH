@@ -1,27 +1,25 @@
 $(document).ready(function () {
-  $(".buttonProduk").click(function (e) {
+  $(".buttonTestimoni").click(function (e) {
     e.preventDefault();
-    let produkID = $(this).data("id");
-    console.log(produkID);
+    let testimoniID = $(this).data("id");
+    console.log(testimoniID);
     $.ajax({
-      url: "../config/get-product-data.php",
+      url: "../config/get-testimoni-data.php",
       method: "GET",
       data: {
-        produk_id: produkID,
+        testimoni_id: testimoniID,
       },
       success: function (data) {
         console.log(data);
-        let produkData = JSON.parse(data);
-        console.log(produkData);
+        let testimoniData = JSON.parse(data);
+        console.log(testimoniData);
 
-        $("#suntingProdukID").val(produkData.ID_Produk);
-        $("#suntingNamaProduk").val(produkData.Nama_Produk);
-        $("#suntingDeskripsiProduk").val(produkData.Deskripsi_Produk);
-        $("#suntingHargaProduk").val(produkData.Harga_Produk);
-        $("#suntingStokProduk").val(produkData.Stok_Produk);
-        $("#suntingStatusProduk").val(produkData.Status_Tersedia_Produk);
+        $("#suntingTestimoniID").val(testimoniData.ID_Testimoni);
+        $("#suntingNamaTestimoni").val(testimoniData.Nama_Testimoni);
+        $("#suntingDeskripsiTestimoni").val(testimoniData.Pesan_Testimoni);
+        $("#suntingStatusTestimoni").val(testimoniData.Status_Testimoni);
 
-        $("#suntingProduk").modal("show");
+        $("#suntingTestimoni").modal("show");
       },
       error: function (xhr) {
         console.error(xhr.responseText);
@@ -29,13 +27,13 @@ $(document).ready(function () {
     });
   });
 
-  $("#tombolSimpanProduk").click(function (e) {
+  $("#tombolSimpanTestimoni").click(function (e) {
     e.preventDefault();
 
     let formData = new FormData($(this).closest("form")[0]);
 
     $.ajax({
-      url: "../config/edit-product.php",
+      url: "../config/edit-testimoni.php",
       method: "POST",
       data: formData,
       processData: false,
@@ -57,9 +55,9 @@ $(document).ready(function () {
             timer: 3000,
             timerProgressBar: true,
           }).then((result) => {
-            result.dismiss === Swal.DismissReason.timer
-              ? (window.location.href = "../pages/data-product.php")
-              : null;
+            if (result.dismiss === Swal.DismissReason.timer) {
+              window.location.href = "../pages/data-testimony.php";
+            }
           });
         } else {
           Swal.fire({
@@ -88,7 +86,7 @@ $(document).ready(function () {
         });
       },
       complete: function () {
-        $("#suntingProduk").modal("hide");
+        $("#suntingTestimoni").modal("hide");
       },
     });
   });

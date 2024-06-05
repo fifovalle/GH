@@ -1,27 +1,22 @@
 $(document).ready(function () {
-  $(".buttonProduk").click(function (e) {
+  $(".buttonSpanduk").click(function (e) {
     e.preventDefault();
-    let produkID = $(this).data("id");
-    console.log(produkID);
+    let spandukID = $(this).data("id");
+    console.log(spandukID);
     $.ajax({
-      url: "../config/get-product-data.php",
+      url: "../config/get-banner-data.php",
       method: "GET",
       data: {
-        produk_id: produkID,
+        spanduk_id: spandukID,
       },
       success: function (data) {
         console.log(data);
-        let produkData = JSON.parse(data);
-        console.log(produkData);
+        let spandukData = JSON.parse(data);
+        console.log(spandukData);
 
-        $("#suntingProdukID").val(produkData.ID_Produk);
-        $("#suntingNamaProduk").val(produkData.Nama_Produk);
-        $("#suntingDeskripsiProduk").val(produkData.Deskripsi_Produk);
-        $("#suntingHargaProduk").val(produkData.Harga_Produk);
-        $("#suntingStokProduk").val(produkData.Stok_Produk);
-        $("#suntingStatusProduk").val(produkData.Status_Tersedia_Produk);
-
-        $("#suntingProduk").modal("show");
+        $("#suntingSpandukID").val(spandukData.ID_Spanduk);
+        $("#suntingNamaSpanduk").val(spandukData.Nama_Spanduk);
+        $("#suntingSpanduk").modal("show");
       },
       error: function (xhr) {
         console.error(xhr.responseText);
@@ -29,13 +24,13 @@ $(document).ready(function () {
     });
   });
 
-  $("#tombolSimpanProduk").click(function (e) {
+  $("#tombolSimpanSpanduk").click(function (e) {
     e.preventDefault();
 
     let formData = new FormData($(this).closest("form")[0]);
 
     $.ajax({
-      url: "../config/edit-product.php",
+      url: "../config/edit-banner.php",
       method: "POST",
       data: formData,
       processData: false,
@@ -58,7 +53,7 @@ $(document).ready(function () {
             timerProgressBar: true,
           }).then((result) => {
             result.dismiss === Swal.DismissReason.timer
-              ? (window.location.href = "../pages/data-product.php")
+              ? (window.location.href = "../pages/data-banner.php")
               : null;
           });
         } else {
@@ -88,7 +83,7 @@ $(document).ready(function () {
         });
       },
       complete: function () {
-        $("#suntingProduk").modal("hide");
+        $("#suntingSpanduk").modal("hide");
       },
     });
   });

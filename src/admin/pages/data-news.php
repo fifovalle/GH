@@ -68,7 +68,6 @@
                                                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $berita['ID_Admin']; ?>"</strong></td>
                                                 <td><?php echo $berita['Judul_Berita']; ?></td>
                                                 <td><?php echo $berita['Deskripsi_Berita']; ?></td>
-                                                <td><?php echo $berita['Deskripsi_Berita']; ?></td>
                                                 <td><?php echo $berita['Tanggal_Berita']; ?></td>
                                                 <td>
                                                     <div class="dropdown">
@@ -76,12 +75,8 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#suntingBerita">
-                                                                <i class="bx bx-edit-alt me-1"></i> Sunting
-                                                            </a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">
-                                                                <i class="bx bx-trash me-1"></i> Hapus
-                                                            </a>
+                                                            <a class="dropdown-item buttonBerita" data-bs-toggle="modal" data-id="<?php echo $berita['ID_Berita']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item" onclick="konfirmasiHapusBerita(<?php echo $berita['ID_Berita']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -118,6 +113,8 @@
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
+    <script src="../assets/js/delete-news.js"></script>
+    <script src="../assets/js/value-news.js"></script>
 
 
     <!-- ALERT -->

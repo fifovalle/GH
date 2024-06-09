@@ -33,11 +33,11 @@
                                     <div id="step1" class="step">
                                         <div class="form-outline">
                                             <label class="form-label">Nama Depan</label>
-                                            <input type="text" id="first-name" class="form-control form-control-lg" placeholder="Masukkan nama depan Anda" />
+                                            <input type="text" id="namaAwal" class="form-control form-control-lg" placeholder="Masukkan nama depan Anda" />
                                         </div>
                                         <div class="form-outline">
                                             <label class="form-label">Nama Belakang</label>
-                                            <input type="text" id="last-name" class="form-control form-control-lg" placeholder="Masukkan nama belakang Anda" />
+                                            <input type="text" id="namaAkhir" class="form-control form-control-lg" placeholder="Masukkan nama belakang Anda" />
                                         </div>
                                     </div>
                                     <div id="step2" class="step">
@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="form-outline">
                                             <label class="form-label">Nama Pengguna</label>
-                                            <input type="text" id="username" class="form-control form-control-lg" placeholder="Masukkan nama pengguna Anda" />
+                                            <input type="text" id="namaPengguna" class="form-control form-control-lg" placeholder="Masukkan nama pengguna Anda" />
                                         </div>
                                     </div>
                                     <div id="step3" class="step">
@@ -65,19 +65,19 @@
                                     <div id="step4" class="step">
                                         <div class="form-outline">
                                             <label class="form-label">Nomor Telepon</label>
-                                            <input type="tel" id="phone" class="form-control form-control-lg" placeholder="Masukkan nomor telepon Anda" />
+                                            <input type="tel" id="noHP" class="form-control form-control-lg" placeholder="Masukkan nomor telepon Anda" />
                                         </div>
                                         <div class="form-outline">
                                             <label class="form-label">Alamat</label>
-                                            <input type="text" id="address" class="form-control form-control-lg" placeholder="Masukkan alamat Anda" />
+                                            <input type="text" id="alamat" class="form-control form-control-lg" placeholder="Masukkan alamat Anda" />
                                         </div>
                                     </div>
                                     <div class="pt-1 mt-3 mb-4 d-flex justify-content-between">
                                         <button id="prevBtn" class="btn btn-lg" type="button" onclick="prevStep()">Sebelumnya</button>
                                         <button id="nextBtn" class="btn btn-lg" type="button" onclick="nextStep()">Selanjutnya</button>
-                                        <button id="submitBtn" class="btn btn-lg btn-block d-none" type="button" onclick="submitForm()">Submit</button>
+                                        <button id="submitBtn" class="btn btn-lg btn-block" type="submit" onclick="submitForm()">Daftar</button>
                                     </div>
-                                    <p class="text-signup mb-5 pb-lg-2">Sudah mempunyai akun? <a href="<?php echo $akarUrl; ?>src/admin/pages/login.php">Masuk</a></p>
+                                    <p class="text-login mb-5 pb-lg-2">Sudah mempunyai akun? <a href="<?php echo $akarUrl; ?>src/admin/pages/login.php">Masuk</a></p>
                                 </form>
                             </div>
                         </div>

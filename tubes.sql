@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2024 at 07:47 PM
+-- Generation Time: Jun 13, 2024 at 05:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -59,7 +59,6 @@ INSERT INTO `admin` (`ID_Admin`, `Foto_Admin`, `Nama_Depan_Admin`, `Nama_Belakan
 
 CREATE TABLE `berita` (
   `ID_Berita` int(11) NOT NULL,
-  `ID_Admin` int(11) NOT NULL,
   `Gambar_Berita` longblob NOT NULL,
   `Judul_Berita` varchar(50) NOT NULL,
   `Deskripsi_Berita` text NOT NULL,
@@ -74,7 +73,6 @@ CREATE TABLE `berita` (
 
 CREATE TABLE `jasa` (
   `ID_Jasa` int(11) NOT NULL,
-  `ID_Admin` int(11) DEFAULT NULL,
   `Gambar_Jasa` longblob NOT NULL,
   `Nama_Jasa` varchar(50) NOT NULL,
   `Deskripsi_Jasa` text NOT NULL,
@@ -88,8 +86,8 @@ CREATE TABLE `jasa` (
 -- Dumping data for table `jasa`
 --
 
-INSERT INTO `jasa` (`ID_Jasa`, `ID_Admin`, `Gambar_Jasa`, `Nama_Jasa`, `Deskripsi_Jasa`, `Harga_Jasa`, `Stok_Jasa`, `Nomor_Rekening_Jasa`, `Status_Tersedia_Jasa`) VALUES
-(1, NULL, 0x6a6173615f363635633864343164396161312e706e67, 'asds', 'axsc', 999999, 99, 654546, 'Tersedia');
+INSERT INTO `jasa` (`ID_Jasa`, `Gambar_Jasa`, `Nama_Jasa`, `Deskripsi_Jasa`, `Harga_Jasa`, `Stok_Jasa`, `Nomor_Rekening_Jasa`, `Status_Tersedia_Jasa`) VALUES
+(1, 0x6a6173615f363635633864343164396161312e706e67, 'asds', 'axsc', 999999, 99, 654546, 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -127,7 +125,6 @@ INSERT INTO `pengguna` (`ID_Pengguna`, `Foto_Pengguna`, `Nama_Depan_Pengguna`, `
 
 CREATE TABLE `produk` (
   `ID_Produk` int(11) NOT NULL,
-  `ID_Admin` int(11) NOT NULL,
   `Gambar_Produk` longblob NOT NULL,
   `Nama_Produk` varchar(50) NOT NULL,
   `Deskripsi_Produk` text NOT NULL,
@@ -141,9 +138,9 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`ID_Produk`, `ID_Admin`, `Gambar_Produk`, `Nama_Produk`, `Deskripsi_Produk`, `Harga_Produk`, `Stok_Produk`, `Nomor_Rekening_Produk`, `Status_Tersedia_Produk`) VALUES
-(6, 0, 0x70726f64756b5f363635633935613935653061622e6a706567, 'Salsa', 'Dijual Khusus Sandro', 10000, 1, 827384283, 'Tersedia'),
-(8, 0, 0x70726f64756b5f363635636165356238326365332e6a706567, 'Cantik', 'Ga Dijual', 12000, 2, 38582738, 'Tersedia');
+INSERT INTO `produk` (`ID_Produk`, `Gambar_Produk`, `Nama_Produk`, `Deskripsi_Produk`, `Harga_Produk`, `Stok_Produk`, `Nomor_Rekening_Produk`, `Status_Tersedia_Produk`) VALUES
+(6, 0x70726f64756b5f363635633935613935653061622e6a706567, 'Salsa', 'Dijual Khusus Sandro', 10000, 1, 827384283, 'Tersedia'),
+(8, 0x70726f64756b5f363635636165356238326365332e6a706567, 'Cantik', 'Ga Dijual', 12000, 2, 38582738, 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -153,7 +150,6 @@ INSERT INTO `produk` (`ID_Produk`, `ID_Admin`, `Gambar_Produk`, `Nama_Produk`, `
 
 CREATE TABLE `spanduk` (
   `ID_Spanduk` int(11) NOT NULL,
-  `ID_Admin` int(11) NOT NULL,
   `Gambar_Spanduk` longblob NOT NULL,
   `Nama_Spanduk` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -162,8 +158,8 @@ CREATE TABLE `spanduk` (
 -- Dumping data for table `spanduk`
 --
 
-INSERT INTO `spanduk` (`ID_Spanduk`, `ID_Admin`, `Gambar_Spanduk`, `Nama_Spanduk`) VALUES
-(1, 0, 0x7370616e64756b5f363635633835353563623063362e706e67, 'sddfgf');
+INSERT INTO `spanduk` (`ID_Spanduk`, `Gambar_Spanduk`, `Nama_Spanduk`) VALUES
+(1, 0x7370616e64756b5f363635633835353563623063362e706e67, 'sddfgf');
 
 -- --------------------------------------------------------
 
@@ -173,7 +169,6 @@ INSERT INTO `spanduk` (`ID_Spanduk`, `ID_Admin`, `Gambar_Spanduk`, `Nama_Spanduk
 
 CREATE TABLE `testimoni` (
   `ID_Testimoni` int(11) NOT NULL,
-  `ID_Admin` int(11) DEFAULT NULL,
   `Nama_Testimoni` varchar(50) NOT NULL,
   `Pesan_Testimoni` text NOT NULL,
   `Status_Testimoni` enum('Penjual','Pembeli') NOT NULL
@@ -187,7 +182,6 @@ CREATE TABLE `testimoni` (
 
 CREATE TABLE `transaksi` (
   `ID_Transaksi` int(11) NOT NULL,
-  `ID_Admin` int(11) DEFAULT NULL,
   `ID_Pengguna` int(11) DEFAULT NULL,
   `ID_Jasa` int(11) DEFAULT NULL,
   `ID_Produk` int(11) DEFAULT NULL,
@@ -211,15 +205,13 @@ ALTER TABLE `admin`
 -- Indexes for table `berita`
 --
 ALTER TABLE `berita`
-  ADD PRIMARY KEY (`ID_Berita`),
-  ADD KEY `ID_Admin` (`ID_Admin`);
+  ADD PRIMARY KEY (`ID_Berita`);
 
 --
 -- Indexes for table `jasa`
 --
 ALTER TABLE `jasa`
-  ADD PRIMARY KEY (`ID_Jasa`),
-  ADD KEY `ID_Admin` (`ID_Admin`);
+  ADD PRIMARY KEY (`ID_Jasa`);
 
 --
 -- Indexes for table `pengguna`
@@ -231,29 +223,25 @@ ALTER TABLE `pengguna`
 -- Indexes for table `produk`
 --
 ALTER TABLE `produk`
-  ADD PRIMARY KEY (`ID_Produk`),
-  ADD KEY `ID_Admin` (`ID_Admin`);
+  ADD PRIMARY KEY (`ID_Produk`);
 
 --
 -- Indexes for table `spanduk`
 --
 ALTER TABLE `spanduk`
-  ADD PRIMARY KEY (`ID_Spanduk`),
-  ADD KEY `ID_Admin` (`ID_Admin`);
+  ADD PRIMARY KEY (`ID_Spanduk`);
 
 --
 -- Indexes for table `testimoni`
 --
 ALTER TABLE `testimoni`
-  ADD PRIMARY KEY (`ID_Testimoni`),
-  ADD KEY `ID_Admin` (`ID_Admin`);
+  ADD PRIMARY KEY (`ID_Testimoni`);
 
 --
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`ID_Transaksi`),
-  ADD KEY `ID_Admin` (`ID_Admin`),
   ADD KEY `ID_Pengguna` (`ID_Pengguna`),
   ADD KEY `ID_Jasa` (`ID_Jasa`),
   ADD KEY `ID_Produk` (`ID_Produk`);
@@ -318,7 +306,6 @@ ALTER TABLE `transaksi`
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`ID_Admin`) REFERENCES `admin` (`ID_Admin`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`ID_Jasa`) REFERENCES `jasa` (`ID_Jasa`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`ID_Produk`) REFERENCES `produk` (`ID_Produk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaksi_ibfk_4` FOREIGN KEY (`ID_Pengguna`) REFERENCES `pengguna` (`ID_Pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;

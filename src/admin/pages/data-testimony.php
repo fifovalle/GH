@@ -42,7 +42,6 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Pengelola</th>
                                         <th>Nama</th>
                                         <th>Pesan</th>
                                         <th>Status</th>
@@ -59,7 +58,6 @@
                                         <?php foreach ($testimoniInfo as $testimoni) : ?>
                                             <tr>
                                                 <td><?php echo $nomor++; ?></td>
-                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $testimoni['ID_Admin']; ?></strong></td>
                                                 <td><?php echo $testimoni['Nama_Testimoni']; ?></td>
                                                 <td><?php echo $testimoni['Pesan_Testimoni']; ?></td>
                                                 <td><span class="badge bg-label-primary me-1"><?php echo $testimoni['Status_Testimoni']; ?></span></td>

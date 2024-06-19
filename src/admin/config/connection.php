@@ -7,7 +7,7 @@ $akarUrl = "/TUBES/";
 $namaServer = "localhost";
 $namaPengguna = "root";
 $kataSandi = "";
-$namaDB = "basarnas";
+$namaDB = "tubes";
 
 $koneksi = new mysqli($namaServer, $namaPengguna, $kataSandi, $namaDB);
 

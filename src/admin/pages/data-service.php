@@ -43,7 +43,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Gambar</th>
-                                        <th>Pengelola</th>
                                         <th>Nama</th>
                                         <th>Deskripsi</th>
                                         <th>Harga</th>
@@ -68,7 +67,6 @@
                                                         <img src="../uploads/<?php echo $jasa['Gambar_Jasa']; ?>" alt="Avatar" class="rounded-circle" />
                                                     </div>
                                                 </td>
-                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $jasa['ID_Admin']; ?></strong></td>
                                                 <td><?php echo $jasa['Nama_Jasa']; ?></td>
                                                 <td><?php echo $jasa['Deskripsi_Jasa']; ?></td>
                                                 <td><?php echo $jasa['Harga_Jasa']; ?></td>
@@ -81,7 +79,7 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                        <a class="dropdown-item buttonJasa" data-bs-toggle="modal" data-id="<?php echo $jasa['ID_Jasa']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item buttonJasa" data-bs-toggle="modal" data-id="<?php echo $jasa['ID_Jasa']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
                                                             <a class="dropdown-item" onclick="konfirmasiHapusJasa(<?php echo $jasa['ID_Jasa']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>

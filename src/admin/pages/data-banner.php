@@ -43,7 +43,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Gambar</th>
-                                        <th>Pengelola</th>
                                         <th>Nama</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -63,7 +62,6 @@
                                                         <img src="../uploads/<?php echo $spanduk['Gambar_Spanduk']; ?>" alt="Avatar" class="rounded-circle" />
                                                     </div>
                                                 </td>
-                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $spanduk['ID_Admin']; ?></strong></td>
                                                 <td><?php echo $spanduk['Nama_Spanduk']; ?></td>
                                                 <td>
                                                     <div class="dropdown">

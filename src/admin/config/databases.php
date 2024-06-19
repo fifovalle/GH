@@ -330,7 +330,7 @@ class Berita
 
     public function tampilkanDataBerita()
     {
-        $query = "SELECT * FROM berita LEFT JOIN admin ON berita.ID_Admin = admin.ID_Admin";
+        $query = "SELECT * FROM berita";
         $result = $this->koneksi->query($query);
 
         if ($result->num_rows > 0) {
@@ -458,7 +458,7 @@ class Testimoni
 
     public function tampilkanDataTestimoni()
     {
-        $query = "SELECT * FROM testimoni LEFT JOIN admin ON testimoni.ID_Admin = admin.ID_Admin";
+        $query = "SELECT * FROM testimoni";
         $result = $this->koneksi->query($query);
 
         if ($result->num_rows > 0) {
@@ -491,18 +491,17 @@ class Testimoni
         $nama = $this->menghilangkanString($dataTestimoni['Nama_Testimoni']);
         $pesan = $this->menghilangkanString($dataTestimoni['Pesan_Testimoni']);
         $status = $this->menghilangkanString($dataTestimoni['Status_Testimoni']);
-    
+
         $sql = "UPDATE testimoni SET Nama_Testimoni = ?, Pesan_Testimoni = ?, Status_Testimoni = ? WHERE ID_Testimoni = ?";
         $stmt = $this->koneksi->prepare($sql);
         $stmt->bind_param("sssi", $nama, $pesan, $status, $idTestimoni);
-    
+
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
-    
 }
 // ===================================TESTIMONI================================
 
@@ -556,7 +555,7 @@ class Produk
 
     public function tampilkanDataProduk()
     {
-        $query = "SELECT * FROM produk LEFT JOIN admin ON produk.ID_Admin = admin.ID_Admin";
+        $query = "SELECT * FROM produk";
         $result = $this->koneksi->query($query);
 
         if ($result->num_rows > 0) {
@@ -578,10 +577,10 @@ class Produk
         $harga = $this->menghilangkanString($dataProduk['Harga_Produk']);
         $stok = $this->menghilangkanString($dataProduk['Stok_Produk']);
         $status = $this->menghilangkanString($dataProduk['Status_Tersedia_Produk']);
-    
+
         $query = "UPDATE produk SET Gambar_Produk = ?, Nama_Produk = ?, Deskripsi_Produk = ?, Harga_Produk = ?, Stok_Produk = ?, Status_Tersedia_Produk = ? WHERE ID_Produk = ?";
         $statement = $this->koneksi->prepare($query);
-    
+
         $statement->bind_param(
             "sssiisi",
             $gambar,
@@ -592,14 +591,14 @@ class Produk
             $status,
             $idProduk
         );
-    
+
         if ($statement->execute()) {
             return true;
         } else {
             return false;
         }
     }
-    
+
 
     public function getGambarProdukById($idProduk)
     {
@@ -696,7 +695,7 @@ class Spanduk
 
     public function tampilkanDataSpanduk()
     {
-        $query = "SELECT * FROM spanduk LEFT JOIN admin ON spanduk.ID_Admin = admin.ID_Admin";
+        $query = "SELECT * FROM spanduk";
         $result = $this->koneksi->query($query);
 
         if ($result->num_rows > 0) {
@@ -821,7 +820,7 @@ class Jasa
 
     public function tampilkanDataJasa()
     {
-        $query = "SELECT * FROM jasa LEFT JOIN admin ON jasa.ID_Admin = admin.ID_Admin";
+        $query = "SELECT * FROM jasa";
         $result = $this->koneksi->query($query);
 
         if ($result->num_rows > 0) {

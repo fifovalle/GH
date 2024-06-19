@@ -43,7 +43,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Gambar</th>
-                                        <th>Pengelola</th>
                                         <th>Judul</th>
                                         <th>Deskripsi</th>
                                         <th>Tanggal</th>
@@ -65,7 +64,6 @@
                                                         <img src="../uploads/<?php echo $berita['Gambar_Berita']; ?>" alt="Avatar" class="rounded-circle" />
                                                     </div>
                                                 </td>
-                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $berita['ID_Admin']; ?>"</strong></td>
                                                 <td><?php echo $berita['Judul_Berita']; ?></td>
                                                 <td><?php echo $berita['Deskripsi_Berita']; ?></td>
                                                 <td><?php echo $berita['Tanggal_Berita']; ?></td>

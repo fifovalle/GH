@@ -43,7 +43,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Gambar</th>
-                                        <th>Pengelola</th>
                                         <th>Nama</th>
                                         <th>Deskripsi</th>
                                         <th>Harga</th>
@@ -68,7 +67,6 @@
                                                         <img src="../uploads/<?php echo $produk['Gambar_Produk']; ?>" alt="Avatar" class="rounded-circle" />
                                                     </div>
                                                 </td>
-                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $produk['ID_Admin']; ?></strong></td>
                                                 <td><?php echo $produk['Nama_Produk']; ?></td>
                                                 <td><?php echo $produk['Deskripsi_Produk']; ?></td>
                                                 <td><?php echo $produk['Harga_Produk']; ?></td>

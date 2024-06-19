@@ -25,12 +25,10 @@ if (isset($_POST['Simpan'])) {
         $statusProduk = mysqli_real_escape_string($koneksi, $_POST['Status_Produk']);
         $nomorRekeningProduk = mysqli_real_escape_string($koneksi, $_POST['Nomor_Rekening_Produk']);
 
-        $idAdmin = isset($_SESSION['ID_Admin']) ? $_SESSION['ID_Admin'] : NULL;
 
         $objekProduk = new Produk($koneksi);
 
         $dataProduk = array(
-            "ID_Admin" => $_SESSION['ID_Admin'],
             'Gambar_Produk' => $gambar,
             'Nama_Produk' => $namaProduk,
             'Deskripsi_Produk' => $deskripsiProduk,

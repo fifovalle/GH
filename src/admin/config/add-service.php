@@ -13,7 +13,7 @@ if (isset($_POST['Simpan'])) {
     }
 
     $ekstensiFile = pathinfo($namaFile, PATHINFO_EXTENSION);
-    $namaFileUnik = uniqid('jasa_') . '.' . $ekstensiFile;
+    $namaFileUnik = uniqid('Jasa_') . '.' . $ekstensiFile;
     $tujuanFile = '../uploads/' . $namaFileUnik;
 
     if (move_uploaded_file($lokasiFile, $tujuanFile)) {
@@ -25,12 +25,9 @@ if (isset($_POST['Simpan'])) {
         $nomorRekeningJasa = mysqli_real_escape_string($koneksi, $_POST['Nomor_Rekening_Jasa']);
         $statusJasa = mysqli_real_escape_string($koneksi, $_POST['Status_Tersedia_Jasa']);
 
-        $idAdmin = isset($_SESSION['ID_Admin']) ? $_SESSION['ID_Admin'] : NULL;
-
         $objekJasa = new Jasa($koneksi);
 
         $dataJasa = array(
-            "ID_Admin" => $_SESSION['ID_Admin'],
             'Gambar_Jasa' => $gambar,
             'Nama_Jasa' => $namaJasa,
             'Deskripsi_Jasa' => $deskripsiJasa,

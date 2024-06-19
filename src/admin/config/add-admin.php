@@ -1,6 +1,8 @@
 <?php
-include 'databases.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+
+include 'databases.php';
 
 if (isset($_POST['Simpan'])) {
     $namaDepan = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['Nama_Depan_Admin']));
@@ -73,7 +75,7 @@ if (isset($_POST['Simpan'])) {
     $apakahFormatDisetujui = in_array($formatFoto, $formatYangDisetujui);
     $pesanKesalahan .= (!$apakahFormatDisetujui && empty($pesanKesalahan)) ? "Format foto harus berupa JPG, JPEG, atau PNG." : '';
 
-    $namaFotoAdminBaru = $apakahFormatDisetujui ? uniqid() . '.' . $formatFoto : '';
+    $namaFotoAdminBaru = $apakahFormatDisetujui ? uniqid('Admin_') . '.' . $formatFoto : '';
 
     $tujuanFotoAdmin = $apakahFormatDisetujui ? '../uploads/' . $namaFotoAdminBaru : '';
 
@@ -110,6 +112,9 @@ if (isset($_POST['Simpan'])) {
     $simpanDataAdmin = $obyekAdmin->tambahAdmin($dataAdmin);
 
     if ($simpanDataAdmin) {
+        require '../../../vendor/autoload.php';
+        $mail = new PHPMailer(true);
+        include 'send-verification-email.php';
     } else {
         setPesanKesalahan("Gagal menyimpan data admin.");
     }

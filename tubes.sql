@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2024 at 02:43 PM
+-- Generation Time: Jun 19, 2024 at 03:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,6 +43,13 @@ CREATE TABLE `admin` (
   `Token_Admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`ID_Admin`, `Foto_Admin`, `Nama_Depan_Admin`, `Nama_Belakang_Admin`, `Email_Admin`, `Nama_Pengguna_Admin`, `Kata_Sandi_Admin`, `Konfirmasi_Kata_Sandi_Admin`, `No_Telepon_Admin`, `Alamat_Admin`, `Peran_Admin`, `Status_Verifikasi_Admin`, `Token_Admin`) VALUES
+(19, 0x41646d696e5f363637326466383864653930352e6a7067, 'Naufal', 'FIFA', 'fifanaufal10@gmail.com', 'fifovalle', '$2y$10$l4XRRxCklUV0DUOcs22AUu5z5GqaxGXynxBlUg8q1CPip38SJ0bcu', '$2y$10$l4XRRxCklUV0DUOcs22AUu5z5GqaxGXynxBlUg8q1CPip38SJ0bcu', '+62 812-2365-2490', 'Batujajar', 'Super Admin', 'Terverifikasi', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +81,13 @@ CREATE TABLE `jasa` (
   `Status_Tersedia_Jasa` enum('Tersedia','Tidak Tersedia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `jasa`
+--
+
+INSERT INTO `jasa` (`ID_Jasa`, `Gambar_Jasa`, `Nama_Jasa`, `Deskripsi_Jasa`, `Harga_Jasa`, `Stok_Jasa`, `Nomor_Rekening_Jasa`, `Status_Tersedia_Jasa`) VALUES
+(2, 0x6a6173615f363637326436333137326162372e706e67, 'Naufal Pijat', 'Naufal bisa pijat gibran sambil kayang', 6000, 9, 63253, 'Tersedia');
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +107,20 @@ CREATE TABLE `pengguna` (
   `Alamat_Pengguna` text NOT NULL,
   `Status_Verifikasi_Pengguna` enum('Tervirifikasi','Belum Terverifikasi') NOT NULL,
   `Token_Pengguna` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengiriman`
+--
+
+CREATE TABLE `pengiriman` (
+  `ID_Pengiriman` int(11) NOT NULL,
+  `Jasa_Pengiriman` enum('Pengiriman Langsung Oleh Penjual') NOT NULL,
+  `Batas_Pengiriman` int(11) NOT NULL,
+  `Jarak_Pengiriman` int(11) NOT NULL,
+  `Total_Pengiriman` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -136,6 +164,13 @@ CREATE TABLE `testimoni` (
   `Pesan_Testimoni` text NOT NULL,
   `Status_Testimoni` enum('Penjual','Pembeli') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `testimoni`
+--
+
+INSERT INTO `testimoni` (`ID_Testimoni`, `Nama_Testimoni`, `Pesan_Testimoni`, `Status_Testimoni`) VALUES
+(5, 'gibranNgepott55', 'Anjayyyyyy', 'Pembeli');
 
 -- --------------------------------------------------------
 
@@ -183,6 +218,12 @@ ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`ID_Pengguna`);
 
 --
+-- Indexes for table `pengiriman`
+--
+ALTER TABLE `pengiriman`
+  ADD PRIMARY KEY (`ID_Pengiriman`);
+
+--
 -- Indexes for table `produk`
 --
 ALTER TABLE `produk`
@@ -217,7 +258,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID_Admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID_Admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `berita`
@@ -229,19 +270,25 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `jasa`
 --
 ALTER TABLE `jasa`
-  MODIFY `ID_Jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `ID_Pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `pengiriman`
+--
+ALTER TABLE `pengiriman`
+  MODIFY `ID_Pengiriman` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `ID_Produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_Produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `spanduk`
@@ -253,7 +300,7 @@ ALTER TABLE `spanduk`
 -- AUTO_INCREMENT for table `testimoni`
 --
 ALTER TABLE `testimoni`
-  MODIFY `ID_Testimoni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Testimoni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `transaksi`

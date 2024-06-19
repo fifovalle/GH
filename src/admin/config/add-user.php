@@ -73,7 +73,7 @@ if (isset($_POST['Simpan'])) {
     $apakahFormatDisetujui = in_array($formatFoto, $formatYangDisetujui);
     $pesanKesalahan .= (!$apakahFormatDisetujui && empty($pesanKesalahan)) ? "Format foto harus berupa JPG, JPEG, atau PNG." : '';
 
-    $namaFotoPenggunaBaru = $apakahFormatDisetujui ? uniqid() . '.' . $formatFoto : '';
+    $namaFotoPenggunaBaru = $apakahFormatDisetujui ? uniqid('Pengguna_') . '.' . $formatFoto : '';
 
     $tujuanFotoPengguna = $apakahFormatDisetujui ? '../uploads/' . $namaFotoPenggunaBaru : '';
 

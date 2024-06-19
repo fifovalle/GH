@@ -13,12 +13,9 @@ if (isset($_POST['Simpan'])) {
     $pesanTestimoni = mysqli_real_escape_string($koneksi, $_POST['Pesan_Testimoni']);
     $statusTestimoni = mysqli_real_escape_string($koneksi, $_POST['Status_Testimoni']);
 
-    $idAdmin = $_SESSION['ID_Admin'];
-
     $objekTestimoni = new Testimoni($koneksi);
 
     $dataTestimoni = array(
-        "ID_Admin" => $idAdmin,
         'Nama_Testimoni' => $namaTestimoni,
         'Pesan_Testimoni' => $pesanTestimoni,
         'Status_Testimoni' => $statusTestimoni,

@@ -52,7 +52,8 @@
                         <label for="tambahPeranAdmin">Peran</label>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary" name="Simpan" id="btnSimpan"><?php echo htmlspecialchars('Kirim'); ?></button>
+                        <div class="pemuat" id="pemuat"></div>
+                        <button type="submit" class="btn btn-primary" name="Simpan" id="btnSimpanAdmin"><?php echo htmlspecialchars('Kirim'); ?></button>
                     </div>
                 </form>
             </div>

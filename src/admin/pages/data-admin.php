@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../assets/css/demo.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../assets/css/admin.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../assets/js/config.js"></script>
@@ -78,7 +79,13 @@
                                                         <span class="badge border border-warning text-warning">Admin</span>
                                                     <?php endif; ?>
                                                 </td>
-                                                <td><span class="badge bg-label-primary me-1">Aktif</span></td>
+                                                <td>
+                                                    <?php if ($admin['Status_Verifikasi_Admin'] == 'Terverifikasi') : ?>
+                                                        <span class="badge border border-success text-success">Terverifikasi</span>
+                                                    <?php else : ?>
+                                                        <span class="badge border border-danger text-danger">Belum Terverifikasi</span>
+                                                    <?php endif; ?>
+                                                </td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -125,8 +132,7 @@
     <script src="../assets/js/dashboards-analytics.js"></script>
     <script src="../assets/js/delete-admin.js"></script>
     <script src="../assets/js/value-admin.js"></script>
-
-
+    <script src="../assets/js/admin.js"></script>
     <!-- ALERT -->
     <?php include '../partials/alert.php' ?>
 

@@ -60,6 +60,22 @@ class Admin
         }
     }
 
+    public function updateStatusVerifikasi($adminId, $status)
+    {
+        $query = "UPDATE admin SET Status_Verifikasi_Admin = ? WHERE ID_Admin = ?";
+        $stmt = mysqli_prepare($this->koneksi, $query);
+        mysqli_stmt_bind_param($stmt, "si", $status, $adminId);
+        return mysqli_stmt_execute($stmt);
+    }
+
+    public function updateToken($adminId, $token)
+    {
+        $query = "UPDATE admin SET Token_Admin = ? WHERE ID_Admin = ?";
+        $stmt = mysqli_prepare($this->koneksi, $query);
+        mysqli_stmt_bind_param($stmt, "ii", $token, $adminId);
+        return mysqli_stmt_execute($stmt);
+    }
+
     public function getAdminByToken($token)
     {
         $query = "SELECT * FROM admin WHERE Token_Admin = ?";
@@ -139,7 +155,6 @@ class Admin
         }
     }
 
-
     public function getFotoAdminById($idAdmin)
     {
         $query = "SELECT Foto_Admin FROM admin WHERE ID_Admin = ?";
@@ -154,6 +169,24 @@ class Admin
         } else {
             return null;
         }
+    }
+
+    public function autentikasiAdmin($email, $kataSandi)
+    {
+        $query = "SELECT * FROM admin WHERE Email_Admin = ? OR Nama_Pengguna_Admin = ?";
+        $statement = $this->koneksi->prepare($query);
+        $statement->bind_param("ss", $email, $email);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $hashedKataSandi = $row['Kata_Sandi_Admin'];
+            if (password_verify($kataSandi, $hashedKataSandi)) {
+                return $row;
+            }
+        }
+        return null;
     }
 }
 // ===================================ADMIN===================================
@@ -433,17 +466,15 @@ class Testimoni
 
     public function tambahTestimoni($data)
     {
-        $idAdmin = $this->menghilangkanString($data['ID_Admin']);
         $namaTestimoni = $this->menghilangkanString($data['Nama_Testimoni']);
         $pesanTestimoni = $this->menghilangkanString($data['Pesan_Testimoni']);
         $statusTestimoni = $this->menghilangkanString($data['Status_Testimoni']);
 
-        $query = "INSERT INTO testimoni (ID_Admin, Nama_Testimoni, Pesan_Testimoni, Status_Testimoni) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO testimoni (Nama_Testimoni, Pesan_Testimoni, Status_Testimoni) VALUES (?, ?, ?)";
 
         $statement = $this->koneksi->prepare($query);
         $statement->bind_param(
-            "isss",
-            $idAdmin,
+            "sss",
             $namaTestimoni,
             $pesanTestimoni,
             $statusTestimoni
@@ -522,7 +553,6 @@ class Produk
 
     public function tambahProduk($data)
     {
-        $idAdmin = $this->menghilangkanString($data['ID_Admin']);
         $gambar = $this->menghilangkanString($data['Gambar_Produk']);
         $nama = $this->menghilangkanString($data['Nama_Produk']);
         $deskripsi = $this->menghilangkanString($data['Deskripsi_Produk']);
@@ -531,12 +561,11 @@ class Produk
         $nomorRekening = $this->menghilangkanString($data['Nomor_Rekening_Produk']);
         $status = $this->menghilangkanString($data['Status_Tersedia_Produk']);
 
-        $query = "INSERT INTO produk (ID_Admin, Gambar_Produk, Nama_Produk, Deskripsi_Produk, Harga_Produk, Stok_Produk, Nomor_Rekening_Produk, Status_Tersedia_Produk) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO produk (Gambar_Produk, Nama_Produk, Deskripsi_Produk, Harga_Produk, Stok_Produk, Nomor_Rekening_Produk, Status_Tersedia_Produk) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $statement = $this->koneksi->prepare($query);
         $statement->bind_param(
-            "isssiiis",
-            $idAdmin,
+            "sssiiis",
             $gambar,
             $nama,
             $deskripsi,
@@ -798,7 +827,6 @@ class Jasa
 
     public function tambahJasa($data)
     {
-        $idAdmin = $data['ID_Admin'];
         $gambar = $data['Gambar_Jasa'];
         $nama = $data['Nama_Jasa'];
         $deskripsi = $data['Deskripsi_Jasa'];
@@ -807,9 +835,9 @@ class Jasa
         $nomorRekening = $data['Nomor_Rekening_Jasa'];
         $status = $data['Status_Tersedia_Jasa'];
 
-        $query = "INSERT INTO jasa (ID_Admin, Gambar_Jasa, Nama_Jasa, Deskripsi_Jasa, Harga_Jasa, Stok_Jasa, Nomor_Rekening_Jasa, Status_Tersedia_Jasa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO jasa (Gambar_Jasa, Nama_Jasa, Deskripsi_Jasa, Harga_Jasa, Stok_Jasa, Nomor_Rekening_Jasa, Status_Tersedia_Jasa) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $statement = $this->koneksi->prepare($query);
-        $statement->bind_param("isssiiis", $idAdmin, $gambar, $nama, $deskripsi, $harga, $stok, $nomorRekening, $status);
+        $statement->bind_param("sssiiis", $gambar, $nama, $deskripsi, $harga, $stok, $nomorRekening, $status);
 
         if ($statement->execute()) {
             return true;
@@ -899,3 +927,82 @@ class Jasa
     }
 }
 // ===================================JASA================================
+
+
+// =================================PENGIRIMAN=============================
+class Pengiriman
+{
+    private $koneksi;
+
+    public function __construct($koneksi)
+    {
+        $this->koneksi = $koneksi;
+    }
+
+    private function menghilangkanString($string)
+    {
+        return htmlspecialchars(mysqli_real_escape_string($this->koneksi, $string));
+    }
+
+    public function tambahPengiriman($data)
+    {
+        $jasaPengiriman = $this->menghilangkanString($data['Jasa_Pengiriman']);
+        $batasPengiriman = intval($data['Batas_Pengiriman']);
+        $jarakPengiriman = intval($data['Jarak_Pengiriman']);
+        $totalPengiriman = intval($data['Total_Pengiriman']);
+
+        $query = "INSERT INTO pengiriman (Jasa_Pengiriman, Batas_Pengiriman, Jarak_Pengiriman, Total_Pengiriman) 
+                  VALUES (?, ?, ?, ?)";
+
+        $statement = $this->koneksi->prepare($query);
+        $statement->bind_param("siii", $jasaPengiriman, $batasPengiriman, $jarakPengiriman, $totalPengiriman);
+
+        return $statement->execute();
+    }
+
+    public function tampilkanDataPengiriman()
+    {
+        $query = "SELECT * FROM pengiriman";
+        $result = $this->koneksi->query($query);
+
+        if ($result->num_rows > 0) {
+            $data = [];
+            while ($baris = $result->fetch_assoc()) {
+                $data[] = $baris;
+            }
+            return $data;
+        }
+        return null;
+    }
+
+    public function hapusPengiriman($id)
+    {
+        $queryDelete = "DELETE FROM pengiriman WHERE ID_Pengiriman=?";
+        $statementDelete = $this->koneksi->prepare($queryDelete);
+        $statementDelete->bind_param("i", $id);
+        $isDeleted = $statementDelete->execute();
+
+        if ($isDeleted) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function perbaruiPengiriman($idPengiriman, $dataPengiriman)
+    {
+        $jasaPengiriman = $this->menghilangkanString($dataPengiriman['Jasa_Pengiriman']);
+        $batasPengiriman = intval($dataPengiriman['Batas_Pengiriman']);
+        $jarakPengiriman = intval($dataPengiriman['Jarak_Pengiriman']);
+        $totalPengiriman = intval($dataPengiriman['Total_Pengiriman']);
+
+        $sql = "UPDATE pengiriman 
+                SET Jasa_Pengiriman = ?, Batas_Pengiriman = ?, Jarak_Pengiriman = ?, Total_Pengiriman = ? 
+                WHERE ID_Pengiriman = ?";
+        $stmt = $this->koneksi->prepare($sql);
+        $stmt->bind_param("siiii", $jasaPengiriman, $batasPengiriman, $jarakPengiriman, $totalPengiriman, $idPengiriman);
+
+        return $stmt->execute();
+    }
+}
+// =================================PENGIRIMAN=============================

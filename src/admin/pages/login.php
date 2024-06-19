@@ -43,7 +43,6 @@
                                         <button class="btn btn-lg btn-block" type="button">Masuk</button>
                                     </div>
                                     <p class="text-forgot">Lupa kata sandi? <a href="#!">Klik Disini.</a></p>
-                                    <p class="text-signup mb-5 pb-lg-2">Belum mempunyai akun? <a href="<?php echo $akarUrl; ?>src/admin/pages/signup.php">Daftar Disini</a></p>
                                 </form>
                             </div>
                         </div>

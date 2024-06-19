@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2024 at 05:59 AM
+-- Generation Time: Jun 19, 2024 at 02:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,14 +43,6 @@ CREATE TABLE `admin` (
   `Token_Admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`ID_Admin`, `Foto_Admin`, `Nama_Depan_Admin`, `Nama_Belakang_Admin`, `Email_Admin`, `Nama_Pengguna_Admin`, `Kata_Sandi_Admin`, `Konfirmasi_Kata_Sandi_Admin`, `No_Telepon_Admin`, `Alamat_Admin`, `Peran_Admin`, `Status_Verifikasi_Admin`, `Token_Admin`) VALUES
-(12, 0x363635633833393936396136302e6a706567, 'Salsa', 'Cantik', 'sandro@gmail.com', 'Istri Saya', '$2y$10$WLuwLy3arRyflD/9Je/32.rBxwkpuQkDE0Yd6Dmn6ugvU2EPO3AnC', '$2y$10$WLuwLy3arRyflD/9Je/32.rBxwkpuQkDE0Yd6Dmn6ugvU2EPO3AnC', '+62 821-7655-4321', 'Hotel Bintang Lima', 'Super Admin', 'Belum Terverifikasi', 76704869),
-(13, 0x363635633863386230333363342e6a7067, 'Sandro', 'Anugrah', 'sandro21@gmail.com', 'Sandro', '$2y$10$TyrbLQLuad0dMukpkYz9luHN.myy/SRIU7b5tz.hSnh.zCQuDhfGi', '$2y$10$TyrbLQLuad0dMukpkYz9luHN.myy/SRIU7b5tz.hSnh.zCQuDhfGi', '+62 822-2345-678', 'Batujajar', 'Super Admin', 'Belum Terverifikasi', 47940000);
-
 -- --------------------------------------------------------
 
 --
@@ -82,13 +74,6 @@ CREATE TABLE `jasa` (
   `Status_Tersedia_Jasa` enum('Tersedia','Tidak Tersedia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `jasa`
---
-
-INSERT INTO `jasa` (`ID_Jasa`, `Gambar_Jasa`, `Nama_Jasa`, `Deskripsi_Jasa`, `Harga_Jasa`, `Stok_Jasa`, `Nomor_Rekening_Jasa`, `Status_Tersedia_Jasa`) VALUES
-(1, 0x6a6173615f363635633864343164396161312e706e67, 'asds', 'axsc', 999999, 99, 654546, 'Tersedia');
-
 -- --------------------------------------------------------
 
 --
@@ -110,13 +95,6 @@ CREATE TABLE `pengguna` (
   `Token_Pengguna` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `pengguna`
---
-
-INSERT INTO `pengguna` (`ID_Pengguna`, `Foto_Pengguna`, `Nama_Depan_Pengguna`, `Nama_Belakang_Pengguna`, `Nama_Pengguna`, `Email_Pengguna`, `Kata_Sandi_Pengguna`, `Konfirmasi_Kata_Sandi_Pengguna`, `No_Telepon_Pengguna`, `Alamat_Pengguna`, `Status_Verifikasi_Pengguna`, `Token_Pengguna`) VALUES
-(6, 0x2e2e2f75706c6f6164732f363635633862386330616461642e6a706567, 'k', 'k', 'k', 'k@gmail.com', '$2y$10$qn56UPt8gQc7SCE7nd3GY.l7g3yAeLUHsU4uZg/MgqatsfODiiZVq', '$2y$10$qn56UPt8gQc7SCE7nd3GY.l7g3yAeLUHsU4uZg/MgqatsfODiiZVq', '+62 822-1234-8765', 'k', 'Belum Terverifikasi', 34336058);
-
 -- --------------------------------------------------------
 
 --
@@ -134,14 +112,6 @@ CREATE TABLE `produk` (
   `Status_Tersedia_Produk` enum('Tersedia','Tidak Tersedia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `produk`
---
-
-INSERT INTO `produk` (`ID_Produk`, `Gambar_Produk`, `Nama_Produk`, `Deskripsi_Produk`, `Harga_Produk`, `Stok_Produk`, `Nomor_Rekening_Produk`, `Status_Tersedia_Produk`) VALUES
-(6, 0x70726f64756b5f363635633935613935653061622e6a706567, 'Salsa', 'Dijual Khusus Sandro', 10000, 1, 827384283, 'Tersedia'),
-(8, 0x70726f64756b5f363635636165356238326365332e6a706567, 'Cantik', 'Ga Dijual', 12000, 2, 38582738, 'Tersedia');
-
 -- --------------------------------------------------------
 
 --
@@ -153,13 +123,6 @@ CREATE TABLE `spanduk` (
   `Gambar_Spanduk` longblob NOT NULL,
   `Nama_Spanduk` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `spanduk`
---
-
-INSERT INTO `spanduk` (`ID_Spanduk`, `Gambar_Spanduk`, `Nama_Spanduk`) VALUES
-(1, 0x7370616e64756b5f363635633835353563623063362e706e67, 'sddfgf');
 
 -- --------------------------------------------------------
 

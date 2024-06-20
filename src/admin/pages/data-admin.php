@@ -100,9 +100,18 @@ if (!isset($_SESSION['ID_Admin'])) {
                                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
+                                                        <?php
+                                                        $adminSekarang = $_SESSION['ID_Admin'];
+                                                        $idAdmin = $admin['ID_Admin'];
+                                                        $sembunyikanTombol = $adminSekarang == $idAdmin ? 'd-none' : '';
+                                                        ?>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item buttonAdmin" style="cursor: pointer;" data-bs-toggle="modal" data-id="<?php echo $admin['ID_Admin']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
-                                                            <a class="dropdown-item" style="cursor: pointer;" onclick="konfirmasiHapusAdmin(<?php echo $admin['ID_Admin']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
+                                                            <a class="dropdown-item buttonAdmin <?php echo $sembunyikanTombol; ?>" style="cursor: pointer;" data-bs-toggle="modal" data-id="<?php echo $admin['ID_Admin']; ?>">
+                                                                <i class="bx bx-edit-alt me-1"></i>Sunting
+                                                            </a>
+                                                            <a class="dropdown-item <?php echo $sembunyikanTombol; ?>" style="cursor: pointer;" onclick="konfirmasiHapusAdmin(<?php echo $admin['ID_Admin']; ?>)">
+                                                                <i class="bx bx-trash me-1"></i>Hapus
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </td>

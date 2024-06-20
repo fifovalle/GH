@@ -14,7 +14,7 @@ if (!isset($_SESSION['ID_Admin'])) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-  <title>Data Pengguna</title>
+  <title>Profil Saya</title>
   <meta name="description" content="Website Tubes Pemrograman Web" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,7 +50,7 @@ if (!isset($_SESSION['ID_Admin'])) {
                   <h4 class="card-header">Profil Saya</h4>
                   <div class="card-body">
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
-                      <img src="../assets/img/avatars/1.png" alt="user-avatar" class="d-block w-px-120 h-px-120 rounded" id="uploadedAvatar" />
+                      <img src="<?php echo $akarUrl; ?>src/admin/uploads/<?php echo $_SESSION['Foto_Admin']; ?>" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar" />
                       <div class="button-wrapper">
                         <label for="upload" class="btn btn-primary me-2 mb-3" tabindex="0">
                           <span class="d-none d-sm-block">Unggah foto baru</span>
@@ -66,35 +66,35 @@ if (!isset($_SESSION['ID_Admin'])) {
                     </div>
                   </div>
                   <div class="card-body pt-2 mt-1">
-                    <form id="formAccountSettings" method="POST" onsubmit="return false">
+                    <form id="formAccountSettings" method="POST">
                       <div class="row mt-2 gy-4">
                         <div class="col-md-6">
                           <div class="form-floating form-floating-outline">
-                            <input class="form-control" type="text" id="firstName" name="firstName" placeholder="Masukan nama awal" autofocus />
+                            <input class="form-control" type="text" value="<?php echo $_SESSION['Nama_Depan_Admin']; ?>" id="firstName" name="firstName" placeholder="Masukan nama awal" autofocus />
                             <label for="firstName">Nama Awal</label>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-floating form-floating-outline">
-                            <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Masukan nama akhir" />
+                            <input class="form-control" type="text" value="<?php echo $_SESSION['Nama_Belakang_Admin']; ?>" name="lastName" id="lastName" placeholder="Masukan nama akhir" />
                             <label for="lastName">Nama Akhir</label>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-floating form-floating-outline">
-                            <input class="form-control" type="text" id="email" name="email" placeholder="contoh@gmail.com" />
+                            <input class="form-control" type="email" value="<?php echo $_SESSION['Email_Admin']; ?>" id="email" name="email" placeholder="contoh@gmail.com" />
                             <label for="email">E-mail</label>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-floating form-floating-outline">
-                            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="08123456789" />
+                            <input type="tel" id="phoneNumber" value="<?php echo $_SESSION['No_Telepon_Admin']; ?>" name="phoneNumber" class="form-control" placeholder="08123456789" />
                             <label for="phoneNumber">No Telepon</label>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-floating form-floating-outline">
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Masukan alamat" />
+                            <textarea name="address" id="address" class="form-control"><?php echo $_SESSION['Alamat_Admin']; ?></textarea>
                             <label for="address">Alamat</label>
                           </div>
                         </div>

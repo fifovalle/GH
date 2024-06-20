@@ -46,6 +46,12 @@
                 <div data-i18n="Analytics">Data Berita</div>
             </a>
         </li>
+        <li class="menu-item <?php echo apakahAktif('src/admin/pages/data-delivery.php') ? 'active' : ''; ?>">
+            <a href="<?php echo $akarUrl; ?>src/admin/pages/data-delivery.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="Analytics">Data Pengiriman</div>
+            </a>
+        </li>
         <li class="menu-item <?php echo apakahAktif('src/admin/pages/data-testimony.php') ? 'active' : ''; ?>">
             <a href="<?php echo $akarUrl; ?>src/admin/pages/data-testimony.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-star"></i>

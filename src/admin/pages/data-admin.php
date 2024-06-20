@@ -135,7 +135,6 @@
     <script src="../assets/js/admin.js"></script>
     <!-- ALERT -->
     <?php include '../partials/alert.php' ?>
-
 </body>
 
 </html>

@@ -36,7 +36,7 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="<?php echo $akarUrl; ?>src/admin/pages/login.php">
+                        <a class="dropdown-item" href="<?php echo $akarUrl; ?>src/admin/config/logout.php">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">Keluar</span>
                         </a>

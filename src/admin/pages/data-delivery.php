@@ -117,7 +117,7 @@ if (!isset($_SESSION['ID_Admin'])) {
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
     <script src="../assets/js/delete-delivery.js"></script>
-    <script src="../assets/js/value-service.js"></script>
+    <script src="../assets/js/value-delivery.js"></script>
     <!-- ALERT -->
     <?php include '../partials/alert.php' ?>
 </body>

@@ -6,11 +6,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo $akarUrl; ?>src/admin/config/add-delivery.php" method="POST">
+                <form>
+                    <input type="hidden" name="ID_Pengiriman" id="suntingIDPengiriman">
                     <div class="form-floating mb-3">
                         <select name="Jasa_Pengiriman" class="form-select" id="suntingJasaPengiriman">
                             <option value="" selected>Pilih Jasa</option>
-                            <option value="Pengiriman Langsung Oleh Penjual">Pengiriman Langsung Oleh Penjual</option>
+                            <option value="Dikirim Oleh Penjual">Dikirim Oleh Penjual</option>
                         </select>
                         <label for="suntingJasaPengiriman">Jasa Pengiriman</label>
                     </div>
@@ -37,7 +38,7 @@
                         <label for="suntingJarakPengiriman">Jarak Pengiriman</label>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary" name="Simpan">Simpan</button>
+                        <button type="submit" class="btn btn-primary" name="Simpan" id="tombolSimpanDelivery">Simpan</button>
                     </div>
                 </form>
             </div>

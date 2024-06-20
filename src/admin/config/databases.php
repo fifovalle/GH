@@ -518,6 +518,24 @@ class Pengiriman
             return false;
         }
     }
+
+    public function perbaruiPengiriman($idPengiriman, $dataPengiriman)
+    {
+        $jasa = $this->menghilangkanString($dataPengiriman['Jasa_Pengiriman']);
+        $batas = $this->menghilangkanString($dataPengiriman['Batas_Pengiriman']);
+        $jarak = $this->menghilangkanString($dataPengiriman['Jarak_Pengiriman']);
+        $total = $this->menghilangkanString($dataPengiriman['Total_Pengiriman']);
+
+        $sql = "UPDATE pengiriman SET Jasa_Pengiriman = ?, Batas_Pengiriman = ?, Jarak_Pengiriman = ?, Total_Pengiriman = ? WHERE ID_Pengiriman = ?";
+        $stmt = $this->koneksi->prepare($sql);
+        $stmt->bind_param("sssii", $jasa, $batas, $jarak, $total, $idPengiriman);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 // ===================================PENGIRIMAN================================
 

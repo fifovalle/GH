@@ -59,34 +59,27 @@ if (!isset($_SESSION['ID_Admin'])) {
                                     </tr>
                                 </thead>
                                 <?php
-                                $jasaModel = new Jasa($koneksi);
-                                $jasaInfo = $jasaModel->tampilkanDataJasa();
+                                $pengirimanModel = new Pengiriman($koneksi);
+                                $pengirimanInfo = $pengirimanModel->tampilkanDataPengiriman();
                                 ?>
                                 <tbody class="table-border-bottom-0">
-                                    <?php if (!empty($jasaInfo)) : ?>
+                                    <?php if (!empty($pengirimanInfo)) : ?>
                                         <?php $nomor = 1; ?>
-                                        <?php foreach ($jasaInfo as $jasa) : ?>
+                                        <?php foreach ($pengirimanInfo as $pengiriman) : ?>
                                             <tr>
                                                 <td><?php echo $nomor++; ?></td>
-                                                <td>
-                                                    <div class="avatar avatar-xl pull-up" title="Nama Jasa">
-                                                        <img src="../uploads/<?php echo $jasa['Gambar_Jasa']; ?>" alt="Avatar" class="rounded-circle" />
-                                                    </div>
-                                                </td>
-                                                <td><?php echo $jasa['Nama_Jasa']; ?></td>
-                                                <td><?php echo $jasa['Deskripsi_Jasa']; ?></td>
-                                                <td><?php echo $jasa['Harga_Jasa']; ?></td>
-                                                <td><?php echo $jasa['Stok_Jasa']; ?></td>
-                                                <td><?php echo $jasa['Nomor_Rekening_Jasa']; ?></td>
-                                                <td><span class="badge bg-label-primary me-1"><?php echo $jasa['Status_Tersedia_Jasa']; ?></span></td>
+                                                <td><?php echo $pengiriman['Jasa_Pengiriman']; ?></td>
+                                                <td><?php echo $pengiriman['Batas_Pengiriman']; ?></td>
+                                                <td><?php echo $pengiriman['Jarak_Pengiriman']; ?></td>
+                                                <td><?php echo $pengiriman['Total_Pengiriman']; ?></td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item buttonJasa" style="cursor: pointer;" data-bs-toggle="modal" data-id="<?php echo $jasa['ID_Jasa']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
-                                                            <a class="dropdown-item" style="cursor: pointer;" onclick="konfirmasiHapusJasa(<?php echo $jasa['ID_Jasa']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
+                                                            <a class="dropdown-item buttonPengiriman" style="cursor: pointer;" data-bs-toggle="modal" data-id="<?php echo $pengiriman['ID_Pengiriman']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item" style="cursor: pointer;" onclick="konfirmasiHapusPengiriman(<?php echo $pengiriman['ID_Pengiriman']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -106,8 +99,8 @@ if (!isset($_SESSION['ID_Admin'])) {
                     <!-- FOOTER END -->
 
                     <!-- MODAL START -->
-                    <?php include '../partials/add-modal-service.php' ?>
-                    <?php include '../partials/edit-modal-service.php' ?>
+                    <?php include '../partials/add-modal-delivery.php' ?>
+                    <?php include '../partials/edit-modal-delivery.php' ?>
                     <!-- MODAL END  -->
                     <div class="content-backdrop fade"></div>
                 </div>
@@ -123,10 +116,8 @@ if (!isset($_SESSION['ID_Admin'])) {
     <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboards-analytics.js"></script>
-    <script src="../assets/js/delete-jasa.js"></script>
+    <script src="../assets/js/delete-delivery.js"></script>
     <script src="../assets/js/value-service.js"></script>
-
-
     <!-- ALERT -->
     <?php include '../partials/alert.php' ?>
 </body>

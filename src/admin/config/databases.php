@@ -449,6 +449,78 @@ class Berita
 }
 // ===================================BERITA===================================
 
+// ===================================PENGIRIMAN================================
+class Pengiriman
+{
+    private $koneksi;
+
+    public function __construct($koneksi)
+    {
+        $this->koneksi = $koneksi;
+    }
+
+    private function menghilangkanString($string)
+    {
+        return htmlspecialchars(mysqli_real_escape_string($this->koneksi, $string));
+    }
+
+    public function tambahPengiriman($data)
+    {
+        $jasaPengiriman = $this->menghilangkanString($data['Jasa_Pengiriman']);
+        $batasPengiriman = $this->menghilangkanString($data['Batas_Pengiriman']);
+        $jarakPengiriman = $this->menghilangkanString($data['Jarak_Pengiriman']);
+        $totalPengiriman = $this->menghilangkanString($data['Total_Pengiriman']);
+
+        $query = "INSERT INTO pengiriman (Jasa_Pengiriman, Batas_Pengiriman, Jarak_Pengiriman, Total_Pengiriman) VALUES (?, ?, ?, ?)";
+
+        $statement = $this->koneksi->prepare($query);
+        $statement->bind_param(
+            "sssi",
+            $jasaPengiriman,
+            $batasPengiriman,
+            $jarakPengiriman,
+            $totalPengiriman
+        );
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function tampilkanDataPengiriman()
+    {
+        $query = "SELECT * FROM pengiriman";
+        $result = $this->koneksi->query($query);
+
+        if ($result->num_rows > 0) {
+            $data = [];
+            while ($baris = $result->fetch_assoc()) {
+                $data[] = $baris;
+            }
+            return $data;
+        } else {
+            return null;
+        }
+    }
+
+    public function hapusPengiriman($id)
+    {
+        $queryDelete = "DELETE FROM pengiriman WHERE ID_Pengiriman=?";
+        $statementDelete = $this->koneksi->prepare($queryDelete);
+        $statementDelete->bind_param("i", $id);
+        $isDeleted = $statementDelete->execute();
+
+        if ($isDeleted) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+// ===================================PENGIRIMAN================================
+
 // ===================================TESTIMONI================================
 class Testimoni
 {
@@ -927,82 +999,3 @@ class Jasa
     }
 }
 // ===================================JASA================================
-
-
-// =================================PENGIRIMAN=============================
-class Pengiriman
-{
-    private $koneksi;
-
-    public function __construct($koneksi)
-    {
-        $this->koneksi = $koneksi;
-    }
-
-    private function menghilangkanString($string)
-    {
-        return htmlspecialchars(mysqli_real_escape_string($this->koneksi, $string));
-    }
-
-    public function tambahPengiriman($data)
-    {
-        $jasaPengiriman = $this->menghilangkanString($data['Jasa_Pengiriman']);
-        $batasPengiriman = intval($data['Batas_Pengiriman']);
-        $jarakPengiriman = intval($data['Jarak_Pengiriman']);
-        $totalPengiriman = intval($data['Total_Pengiriman']);
-
-        $query = "INSERT INTO pengiriman (Jasa_Pengiriman, Batas_Pengiriman, Jarak_Pengiriman, Total_Pengiriman) 
-                  VALUES (?, ?, ?, ?)";
-
-        $statement = $this->koneksi->prepare($query);
-        $statement->bind_param("siii", $jasaPengiriman, $batasPengiriman, $jarakPengiriman, $totalPengiriman);
-
-        return $statement->execute();
-    }
-
-    public function tampilkanDataPengiriman()
-    {
-        $query = "SELECT * FROM pengiriman";
-        $result = $this->koneksi->query($query);
-
-        if ($result->num_rows > 0) {
-            $data = [];
-            while ($baris = $result->fetch_assoc()) {
-                $data[] = $baris;
-            }
-            return $data;
-        }
-        return null;
-    }
-
-    public function hapusPengiriman($id)
-    {
-        $queryDelete = "DELETE FROM pengiriman WHERE ID_Pengiriman=?";
-        $statementDelete = $this->koneksi->prepare($queryDelete);
-        $statementDelete->bind_param("i", $id);
-        $isDeleted = $statementDelete->execute();
-
-        if ($isDeleted) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function perbaruiPengiriman($idPengiriman, $dataPengiriman)
-    {
-        $jasaPengiriman = $this->menghilangkanString($dataPengiriman['Jasa_Pengiriman']);
-        $batasPengiriman = intval($dataPengiriman['Batas_Pengiriman']);
-        $jarakPengiriman = intval($dataPengiriman['Jarak_Pengiriman']);
-        $totalPengiriman = intval($dataPengiriman['Total_Pengiriman']);
-
-        $sql = "UPDATE pengiriman 
-                SET Jasa_Pengiriman = ?, Batas_Pengiriman = ?, Jarak_Pengiriman = ?, Total_Pengiriman = ? 
-                WHERE ID_Pengiriman = ?";
-        $stmt = $this->koneksi->prepare($sql);
-        $stmt->bind_param("siiii", $jasaPengiriman, $batasPengiriman, $jarakPengiriman, $totalPengiriman, $idPengiriman);
-
-        return $stmt->execute();
-    }
-}
-// =================================PENGIRIMAN=============================

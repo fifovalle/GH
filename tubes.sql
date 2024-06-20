@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2024 at 04:52 AM
+-- Generation Time: Jun 20, 2024 at 06:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -110,11 +110,19 @@ CREATE TABLE `pengguna` (
 
 CREATE TABLE `pengiriman` (
   `ID_Pengiriman` int(11) NOT NULL,
-  `Jasa_Pengiriman` enum('Pengiriman Langsung Oleh Penjual') NOT NULL,
-  `Batas_Pengiriman` int(11) NOT NULL,
-  `Jarak_Pengiriman` int(11) NOT NULL,
+  `Jasa_Pengiriman` enum('Dikirim Oleh Penjual') NOT NULL,
+  `Batas_Pengiriman` enum('1 KG','2 KG','3 KG','4 KG','5 KG') NOT NULL,
+  `Jarak_Pengiriman` enum('1 KM','2 KM','3 KM','4 KM','5 KM') NOT NULL,
   `Total_Pengiriman` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pengiriman`
+--
+
+INSERT INTO `pengiriman` (`ID_Pengiriman`, `Jasa_Pengiriman`, `Batas_Pengiriman`, `Jarak_Pengiriman`, `Total_Pengiriman`) VALUES
+(7, 'Dikirim Oleh Penjual', '1 KG', '1 KM', 5000),
+(8, 'Dikirim Oleh Penjual', '1 KG', '2 KM', 10000);
 
 -- --------------------------------------------------------
 
@@ -275,7 +283,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `ID_Pengiriman` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `produk`

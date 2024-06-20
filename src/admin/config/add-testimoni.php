@@ -5,7 +5,7 @@ ob_start();
 if (isset($_POST['Simpan'])) {
     if (empty($_POST['Nama_Testimoni']) || empty($_POST['Pesan_Testimoni']) || empty($_POST['Status_Testimoni'])) {
         setPesanKesalahan("Semua field harus diisi.");
-        header("Location: " . $akarUrl . "src/admin/pages/data-news.php");
+        header("Location: " . $akarUrl . "src/admin/pages/data-testimony.php");
         exit;
     }
 

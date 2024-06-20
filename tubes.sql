@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2024 at 03:52 PM
+-- Generation Time: Jun 20, 2024 at 04:52 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ID_Admin`, `Foto_Admin`, `Nama_Depan_Admin`, `Nama_Belakang_Admin`, `Email_Admin`, `Nama_Pengguna_Admin`, `Kata_Sandi_Admin`, `Konfirmasi_Kata_Sandi_Admin`, `No_Telepon_Admin`, `Alamat_Admin`, `Peran_Admin`, `Status_Verifikasi_Admin`, `Token_Admin`) VALUES
-(19, 0x41646d696e5f363637326466383864653930352e6a7067, 'Naufal', 'FIFA', 'fifanaufal10@gmail.com', 'fifovalle', '$2y$10$l4XRRxCklUV0DUOcs22AUu5z5GqaxGXynxBlUg8q1CPip38SJ0bcu', '$2y$10$l4XRRxCklUV0DUOcs22AUu5z5GqaxGXynxBlUg8q1CPip38SJ0bcu', '+62 812-2365-2490', 'Batujajar', 'Super Admin', 'Terverifikasi', 0);
+(20, 0x41646d696e5f363637333939343034343165622e6a7067, 'Naufal', 'FIFA', 'fifanaufal10@gmail.com', 'fifovalle', '$2y$10$DK9PLU13o7TKIxjCXYeIIuWdH0pG3mnjyZPA0Ukzm60CWNOU.wajm', '$2y$10$DK9PLU13o7TKIxjCXYeIIuWdH0pG3mnjyZPA0Ukzm60CWNOU.wajm', '+62 812-2365-2490', 'Batujajar', 'Super Admin', 'Terverifikasi', 0);
 
 -- --------------------------------------------------------
 
@@ -80,13 +80,6 @@ CREATE TABLE `jasa` (
   `Nomor_Rekening_Jasa` int(20) NOT NULL,
   `Status_Tersedia_Jasa` enum('Tersedia','Tidak Tersedia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `jasa`
---
-
-INSERT INTO `jasa` (`ID_Jasa`, `Gambar_Jasa`, `Nama_Jasa`, `Deskripsi_Jasa`, `Harga_Jasa`, `Stok_Jasa`, `Nomor_Rekening_Jasa`, `Status_Tersedia_Jasa`) VALUES
-(2, 0x6a6173615f363637326436333137326162372e706e67, 'Naufal Pijat', 'Naufal bisa pijat gibran sambil kayang', 6000, 9, 63253, 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -258,7 +251,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID_Admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID_Admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `berita`

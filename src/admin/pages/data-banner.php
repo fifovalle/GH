@@ -69,8 +69,8 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item buttonSpanduk" data-bs-toggle="modal" data-id="<?php echo $spanduk['ID_Spanduk']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
-                                                            <a class="dropdown-item" onclick="konfirmasiHapusSpanduk(<?php echo $spanduk['ID_Spanduk']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
+                                                            <a class="dropdown-item buttonSpanduk" style="cursor: pointer;" data-bs-toggle="modal" data-id="<?php echo $spanduk['ID_Spanduk']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item" style="cursor: pointer;" onclick="konfirmasiHapusSpanduk(<?php echo $spanduk['ID_Spanduk']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>
                                                 </td>

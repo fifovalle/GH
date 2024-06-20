@@ -67,8 +67,8 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item buttonTestimoni" data-bs-toggle="modal" data-id="<?php echo $testimoni['ID_Testimoni']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
-                                                            <a class="dropdown-item" onclick="konfirmasiHapusTestimoni(<?php echo $testimoni['ID_Testimoni']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
+                                                            <a class="dropdown-item buttonTestimoni" style="cursor: pointer;" data-bs-toggle="modal" data-id="<?php echo $testimoni['ID_Testimoni']; ?>"><i class="bx bx-edit-alt me-1"></i>Sunting</a>
+                                                            <a class="dropdown-item" style="cursor: pointer;" onclick="konfirmasiHapusTestimoni(<?php echo $testimoni['ID_Testimoni']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>
                                                 </td>

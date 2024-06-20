@@ -77,7 +77,7 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" onclick="konfirmasiHapusPengguna(<?php echo $pengguna['ID_Pengguna']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
+                                                            <a class="dropdown-item" style="cursor: pointer;" onclick="konfirmasiHapusPengguna(<?php echo $pengguna['ID_Pengguna']; ?>)"><i class="bx bx-trash me-1"></i>Hapus</a>
                                                         </div>
                                                     </div>
                                                 </td>

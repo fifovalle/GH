@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <h1 class="fw-bolder">TUBES</h1>
+        <h3 class="fw-bolder">NDARU FARM</h3>
     </div>
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">

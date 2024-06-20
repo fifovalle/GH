@@ -10,8 +10,8 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-        <li class="menu-item <?php echo apakahAktif('pages/data-admin.php') ? 'active' : ''; ?>">
-            <a href="<?php echo $akarUrl; ?>pages/data-admin.php" class="menu-link">
+        <li class="menu-item <?php echo apakahAktif('src/admin/pages/data-admin.php') ? 'active' : ''; ?>">
+            <a href="<?php echo $akarUrl; ?>src/admin/pages/data-admin.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-user"></i>
                 <div data-i18n="Analytics">Data Admin</div>
             </a>

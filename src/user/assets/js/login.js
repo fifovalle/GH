@@ -56,4 +56,7 @@ $(".js-tilt").tilt({
 
     $(thisAlert).removeClass("alert-validate");
   }
+
 })(jQuery);
+
+

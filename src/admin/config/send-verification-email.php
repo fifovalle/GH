@@ -21,9 +21,9 @@ $mail->Body = '
                             <tr>
                                 <td style="text-align:center;">
                                 <a href="" title="logo" target="_blank">
-                                <img width="120" src="https://lppm.unjani.ac.id/wp-content/uploads/2018/08/LOGO-UNJANI-DESIGN-DARI-BEM-KM-UNJANI-2011COMPRESS-286x300-286x300.png" title="logo" alt="logo">
+                                <img width="150" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrZsfo9H5KX4hR2Ti5fboFo5j0jt5qe27JN6O3Ad0vuZOqJjc3eTxNa_FmPh1IMoEcAMU&usqp=CAU" title="logo" alt="logo" style="border-radius: 90px;">
                                 </a>
-                                <p style="font-family: \'Trebuchet MS\', sans-serif; font-weight: bold; letter-spacing: 5px; font-size: 25px; margin: 10px 0;">FSI UNJANI</p>
+                                <p style="font-family: \'Trebuchet MS\', sans-serif; font-weight: bold; letter-spacing: 5px; font-size: 25px; margin: 10px 0;">NDARU FARM</p>
                                 </td>
                             </tr>   
                             <tr>
@@ -42,7 +42,7 @@ $mail->Body = '
                                             <p style="color:#455056; font-size:15px; line-height:24px; margin:0;">
                                                 Harap konfirmasikan bahwa Anda ingin menggunakan ini sebagai alamat email akun Anda. Setelah selesai, Anda akan dapat mulai mengakses!
                                             </p>
-                                            <a href="http://localhost/TUBES/src/admin/config/verification-email.php?Token=' . $token . '" style="background:#20e277; text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff; text-transform:uppercase; font-size:14px; padding:10px 24px; display:inline-block; border-radius:50px;">Verifikasi</a>
+                                            <a href="http://localhost/TUBES/src/admin/config/verification-email.php?Token=' . $token . '" style="background:#169e53; text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff; text-transform:uppercase; font-size:14px; padding:10px 24px; display:inline-block; border-radius:50px;">Verifikasi</a>
                                         </td>
                                     </tr>
                                         <tr>

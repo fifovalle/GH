@@ -1,4 +1,13 @@
-<?php include '../config/databases.php'; ?>
+<?php
+include '../config/databases.php';
+
+if (!isset($_SESSION['ID_Admin'])) {
+    setPesanKesalahan("Silahkan login terlebih dahulu!");
+    header("Location: $akarUrl" . "src/admin/pages/login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
 

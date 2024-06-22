@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2024 at 07:58 AM
+-- Generation Time: Jun 21, 2024 at 02:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -101,6 +101,13 @@ CREATE TABLE `pengguna` (
   `Status_Verifikasi_Pengguna` enum('Tervirifikasi','Belum Terverifikasi') NOT NULL,
   `Token_Pengguna` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pengguna`
+--
+
+INSERT INTO `pengguna` (`ID_Pengguna`, `Foto_Pengguna`, `Nama_Depan_Pengguna`, `Nama_Belakang_Pengguna`, `Nama_Pengguna`, `Email_Pengguna`, `Kata_Sandi_Pengguna`, `Konfirmasi_Kata_Sandi_Pengguna`, `No_Telepon_Pengguna`, `Alamat_Pengguna`, `Status_Verifikasi_Pengguna`, `Token_Pengguna`) VALUES
+(9, '', 'Ahsan', 'Ghifari', 'Ahsan13', 'ahsanghifari04@gmail.com', '$2y$10$.sfFvZeNGKGBw4vdhJ//Muxl45dJu2k25OwGQJYeytEdH51OYxMUG', '$2y$10$.sfFvZeNGKGBw4vdhJ//Muxl45dJu2k25OwGQJYeytEdH51OYxMUG', '+62 812-8411-8340', 'alamat palsu', 'Belum Terverifikasi', 10273643);
 
 -- --------------------------------------------------------
 
@@ -277,7 +284,7 @@ ALTER TABLE `jasa`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `ID_Pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_Pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pengiriman`

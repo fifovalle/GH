@@ -43,11 +43,6 @@
   transition: all 0.2s ease-in-out;
 }
 
-.vh-100 .logo-comp{
-  max-width: 130px;
-  margin-top: -50px;
-}
-
 #form-input:focus {
   outline: 2px solid rgba(0, 128, 0, 0.733);
   box-shadow: 0 0 5px rgba(0, 128, 0, 0.733);
@@ -120,7 +115,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.text-note{
+.text-note {
   font-size: 11px;
   margin-left: 10px;
 }

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ndaru Farm | Masuk</title>
+    <title>Ndaru Farm | Ubah kata sandi</title>
     <link rel="icon" href="../../user/assets/img/company-logos/logo_ndaru.jpg" />
     <!-- link internal -->
     <link rel="stylesheet" href="../assets/css/login.css" />
@@ -40,22 +40,22 @@
                                         <div class="mt-3 mb-4 pb-1 d-flex justify-content-between align-items-center">
                                             <img class="logo-comp" src="../../user/assets/img/company-logos/logo_ndaru.jpg" />
                                             <h5 class="fw-bold mb-3 pb-3 text-center" style="letter-spacing: 1px; flex-grow: 1">
-                                                Masuk ke akun anda!
+                                                Masukan kata sandi baru!
                                             </h5>
                                         </div>
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label">Email Atau Nama Pengguna</label>
-                                            <input type="text" id="form-input" name="Email_Nama_Pengguna_Admin" class="form-control form-control-lg" placeholder="Masukan Email Anda Atau Nama Pengguna" autocomplete="off" />
+                                        <div class="form-outline mb-4 position-relative">
+                                            <label class="form-label">Kata Sandi Baru</label>
+                                            <input type="password" id="reset_password" name="Ubah_Kata_Sandi_Admin" class="form-control form-control-lg" placeholder="Masukan Kata Sandi Baru" />
+                                            <i class="fas fa-eye position-absolute" id="toggle-reset" style="right: 25px; top: 50px; cursor: pointer"></i>
                                         </div>
                                         <div class="form-outline mb-4 position-relative">
-                                            <label class="form-label">Kata Sandi</label>
-                                            <input type="password" id="password" name="Kata_Sandi_Admin" class="form-control form-control-lg" placeholder="Masukan Kata Sandi Anda" />
-                                            <i class="fas fa-eye position-absolute" id="toggle-login" style="right: 25px; top: 50px; cursor: pointer"></i>
+                                            <label class="form-label">Konfirmasi Kata Sandi Baru</label>
+                                            <input type="password" id="confirm_password" name="Konfirmasi_Kata_Sandi_Admin" class="form-control form-control-lg" placeholder="Konfirmasi Kata Sandi Baru" />
+                                            <i class="fas fa-eye position-absolute" id="toggle-confirm" style="right: 25px; top: 50px; cursor: pointer"></i>
                                         </div>
                                         <div class="pt-1 mb-4 d-flex justify-content-center">
-                                            <button class="btn btn-lg btn-block" name="Masuk" type="submit">Masuk</button>
+                                            <button class="btn btn-lg btn-block" name="Masuk" type="submit">Konfirmasi</button>
                                         </div>
-                                        <p class="text-forgot">Lupa kata sandi? <a href="<?php echo $akarUrl; ?>src/admin/pages/forgot-pass.php">Klik Disini.</a></p>
                                     </form>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
         </div>
         <!-- script internal -->
         <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-        <script src="../assets/js/login.js"></script>
+        <script src="../assets/js/reset-password.js"></script>
         <script src="../../user/assets/js/jquery-1.11.3.min.js"></script>
         <script src="../assets/js/loaders.js"></script>
         <!-- ALERT -->
